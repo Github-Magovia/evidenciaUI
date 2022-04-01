@@ -13,6 +13,8 @@ import { HlavnaStrankaComponent } from './child-components/hlavna/hlavna-stranka
 import { OsobyZoznamComponent } from './child-components/osoby/child-components/osoby-zoznam/osoby-zoznam.component';
 import { OsobyFormularComponent } from './child-components/osoby/child-components/osoby-formular/osoby-formular.component';
 import { FooterBarComponent } from './child-components/footer-bar/footer-bar.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -30,7 +32,10 @@ import { FooterBarComponent } from './child-components/footer-bar/footer-bar.com
         SweetAlert2Module.forRoot(),
         MdbCollapseModule,
         RouterModule,
-        AppRoutingModule
+        AppRoutingModule,
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

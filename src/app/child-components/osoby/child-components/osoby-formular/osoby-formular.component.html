@@ -1,1 +1,34 @@
-<p>osoby-formular works!</p>
+<ng-template #content let-modal>
+  <div class="modal-header bg-light">
+    <h4 class="modal-title" id="modal-basic-title">Pridať osobu</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.close('cancel')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="osobaForm">
+      <!-- Meno input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="meno">Krstné meno: </label>
+        <input type="text" id="meno" formControlName="meno" class="form-control" />
+      </div>
+      <!-- Priezvisko input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="priez">Priezvisko: </label>
+        <input type="text" id="priez" formControlName="priezvisko" class="form-control" />
+      </div>
+      <!-- Datum Narodenia input -->
+      <div class="form-outline datepicker">
+        <label for="datNar" class="form-label">Dátum narodenia: </label>
+        <input type="date" formControlName="datumNar" class="form-control" id="datNar">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer bg-light">
+    <button type="button" class="btn btn-success" (click)="modal.close('add')">Pridaj</button>
+    <button type="button" class="btn btn-danger" (click)="modal.close('cancel')">Zrušiť</button>
+  </div>
+</ng-template>
+
+<ngb-alert class="alert alert-warning" *ngIf="showAlert" (closed)="toggleAlert(false)">Pridávanie osoby bolo zrušené.</ngb-alert>
+<button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open(content)">Pridaj osobu</button>
+
+<hr>
