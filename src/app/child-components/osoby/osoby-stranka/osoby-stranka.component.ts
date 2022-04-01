@@ -38,7 +38,6 @@ export class OsobyStrankaComponent implements OnInit, OnDestroy {
   }
 
   upravOsobu(o: Osoba): void {
-    // @ts-ignore
     this.sub.add(this.osobySrv.updatePerson(o.id, o).subscribe(data => {
       //todo alert
       this.refreshOsoby();

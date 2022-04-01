@@ -20,6 +20,8 @@ export class OsobyFormularComponent implements OnInit {
   createOsoba: EventEmitter<Osoba>;
   @Output()
   editOsoba: EventEmitter<Osoba>;
+  @Output()
+  deleteOsoba: EventEmitter<number>;
 
   constructor(private modalService: NgbModal) {
     this.showAlert = false;

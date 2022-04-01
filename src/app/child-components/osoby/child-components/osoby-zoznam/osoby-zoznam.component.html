@@ -17,7 +17,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let osoba of osoby" onClick="alert('hey');">
+      <tr *ngFor="let osoba of osoby" (click)="edit(osoba.id)" style="cursor: pointer">
         <th scope="row">{{ osoba.id }}</th>
         <td>{{osoba.firstName}}</td>
         <td>{{osoba.lastName}}</td>
