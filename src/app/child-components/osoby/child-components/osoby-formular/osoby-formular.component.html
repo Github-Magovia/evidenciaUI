@@ -7,28 +7,45 @@
     <form [formGroup]="osobaForm">
       <!-- Meno input -->
       <div class="form-outline mb-4">
+        <label class="form-label" for="id">ID: </label>
+        <input type="number" id="id" readonly formControlName="id" class="form-control" />
+        <small class="small tooltip">ID bude priradené automaticky.</small>
+      </div>
+      <!-- Meno input -->
+      <div class="form-outline mb-4">
         <label class="form-label" for="meno">Krstné meno: </label>
-        <input type="text" id="meno" formControlName="meno" class="form-control" />
+        <input type="text" id="meno" formControlName="firstName" class="form-control" />
       </div>
       <!-- Priezvisko input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="priez">Priezvisko: </label>
-        <input type="text" id="priez" formControlName="priezvisko" class="form-control" />
+        <input type="text" id="priez" formControlName="lastName" class="form-control" />
       </div>
       <!-- Datum Narodenia input -->
       <div class="form-outline datepicker">
         <label for="datNar" class="form-label">Dátum narodenia: </label>
-        <input type="date" formControlName="datumNar" class="form-control" id="datNar">
+        <input type="date" formControlName="dateOfBirth" class="form-control" id="datNar">
+      </div>
+      <!-- Pohlavie input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="pohlavie">Pohlavie: </label>
+        <select id="pohlavie" class="form-select" formControlName="sex">
+          <option value="Male">Muž</option>
+          <option value="Female">Žena</option>
+          <option value="Other">Iné</option>
+        </select>
       </div>
     </form>
   </div>
   <div class="modal-footer bg-light">
-    <button type="button" class="btn btn-success" (click)="modal.close('add')">Pridaj</button>
-    <button type="button" class="btn btn-danger" (click)="modal.close('cancel')">Zrušiť</button>
+    <button type="button" class="btn btn-success" *ngIf="osobaForm.value.id === null" (click)="modal.close('add')">Pridaj</button>
+    <button type="button" class="btn btn-info" *ngIf="osobaForm.value.id !== null" (click)="modal.close('edit')">Upraviť</button>
+    <button type="button" class="btn btn-danger" *ngIf="osobaForm.value.id !== null" (click)="modal.close('delete')">Zmazať</button>
+    <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">Zrušiť</button>
   </div>
 </ng-template>
 
-<ngb-alert class="alert alert-warning" *ngIf="showAlert" (closed)="toggleAlert(false)">Pridávanie osoby bolo zrušené.</ngb-alert>
+<ngb-alert class="alert alert-warning" *ngIf="showAlert" (closed)="toggleAlert(false)">Modifikácia osoby bola zrušená.</ngb-alert>
 <button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open(content)">Pridaj osobu</button>
 
 <hr>

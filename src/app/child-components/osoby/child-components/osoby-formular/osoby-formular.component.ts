@@ -27,6 +27,7 @@ export class OsobyFormularComponent implements OnInit {
     this.showAlert = false;
     this.createOsoba = new EventEmitter<Osoba>();
     this.editOsoba = new EventEmitter<Osoba>();
+    this.deleteOsoba = new EventEmitter<number>();
     this.osobaForm = new FormGroup({
       id: new FormControl(null),
       firstName: new FormControl(null),
@@ -59,10 +60,29 @@ export class OsobyFormularComponent implements OnInit {
         sex: this.osobaForm.value.sex
       });
       this.toggleAlert(false);
+    } else if (reason === "edit") {
+      this.uprav();
+      this.toggleAlert(false);
+    } else if (reason === "delete") {
+      this.zmaz();
     } else {
       this.toggleAlert(true);
     }
+    this.zastavUpravu();
+  }
+
+  public uprav(): void{
+    this.editOsoba.emit(this.osobaForm.value);
     this.osobaForm.reset();
+  }
+
+  public zastavUpravu(): void {
+    this.osoba = undefined;
+    this.osobaForm.reset();
+  }
+
+  public zmaz(): void {
+    this.deleteOsoba.emit(this.osobaForm.value.id);
   }
 
   public toggleAlert(val: boolean) { this.showAlert = val; }
