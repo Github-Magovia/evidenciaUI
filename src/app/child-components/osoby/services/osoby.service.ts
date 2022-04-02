@@ -14,7 +14,7 @@ export class OsobyService {
 
   public createPerson(o: Osoba): Observable<Osoba> { return this.http.post<Osoba>(`${this.apiUrl}`, o); }
 
-  public getAllPeople(): Observable<Osoba[]> { return this.http.get<Osoba[]>(`${this.apiUrl}`); }
+  public getPeople(): Observable<Osoba[]> { return this.http.get<Osoba[]>(`${this.apiUrl}`); }
 
   public getPersonById(personId: number): Observable<Osoba> {
     return this.http.get<Osoba>(`${this.apiUrl}/${personId}`);

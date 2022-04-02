@@ -1,4 +1,12 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormControl, FormGroup} from "@angular/forms";
 import {Osoba} from "../../../../../models/osoba.model";
@@ -10,6 +18,7 @@ import {Osoba} from "../../../../../models/osoba.model";
 })
 export class OsobyFormularComponent implements OnInit {
   osobaForm: FormGroup;
+  @ViewChild('content', { static: true }) modal: ElementRef;
   showAlert: boolean;
 
   @Input()
@@ -45,8 +54,10 @@ export class OsobyFormularComponent implements OnInit {
     this.osobaForm.controls['sex'].setValue(o.sex);
   }
 
-  open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((reason) => {
+  open() {
+    this.modalService.open(this.modal, {ariaLabelledBy: 'modal-basic-title'}).result.then((reason) => {
+      this.spracuj(reason);
+    }, (reason) => {
       this.spracuj(reason);
     });
   }
