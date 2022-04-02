@@ -38,9 +38,16 @@
     </form>
   </div>
   <div class="modal-footer bg-light">
-    <button type="button" class="btn btn-success" *ngIf="osobaForm.value.id === null" (click)="modal.close('add')">Pridaj</button>
-    <button type="button" class="btn btn-info" *ngIf="osobaForm.value.id !== null" (click)="modal.close('edit')">Upraviť</button>
-    <button type="button" class="btn btn-danger" *ngIf="osobaForm.value.id !== null" (click)="modal.close('delete')">Zmazať</button>
+    <button type="button" class="btn btn-success"
+            *ngIf="osobaForm.value.id === null"
+            (click)="modal.close('add')"
+            [attr.disabled]="osobaForm.valid? null : true">Pridaj</button>
+    <button type="button" class="btn btn-info"
+            *ngIf="osobaForm.value.id !== null"
+            (click)="modal.close('edit')"
+            [attr.disabled]="osobaForm.valid? null : true">Upraviť</button>
+    <button type="button" class="btn btn-danger" *ngIf="osobaForm.value.id !== null"
+            (click)="modal.close('delete')">Zmazať</button>
     <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">Zrušiť</button>
   </div>
 </ng-template>

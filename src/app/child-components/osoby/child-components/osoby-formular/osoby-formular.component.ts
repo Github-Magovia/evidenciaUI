@@ -8,7 +8,7 @@ import {
   ViewChild
 } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Osoba} from "../../../../../models/osoba.model";
 
 @Component({
@@ -32,6 +32,7 @@ export class OsobyFormularComponent implements OnInit {
   @Output()
   deleteOsoba: EventEmitter<number>;
 
+  //TODO Fix Date with backend
   constructor(private modalService: NgbModal) {
     this.showAlert = false;
     this.createOsoba = new EventEmitter<Osoba>();
@@ -39,10 +40,18 @@ export class OsobyFormularComponent implements OnInit {
     this.deleteOsoba = new EventEmitter<number>();
     this.osobaForm = new FormGroup({
       id: new FormControl(null),
-      firstName: new FormControl(null),
-      lastName: new FormControl(null),
-      dateOfBirth: new FormControl(null),
-      sex: new FormControl(null)
+      firstName: new FormControl(null, [
+        Validators.required
+      ]),
+      lastName: new FormControl(null, [
+        Validators.required
+        ]),
+      dateOfBirth: new FormControl(null, [
+        Validators.required
+      ]),
+      sex: new FormControl(null, [
+        Validators.required
+      ])
     });
   }
 
@@ -50,7 +59,7 @@ export class OsobyFormularComponent implements OnInit {
     this.osobaForm.controls['id'].setValue(o.id);
     this.osobaForm.controls['firstName'].setValue(o.firstName);
     this.osobaForm.controls['lastName'].setValue(o.lastName);
-    this.osobaForm.controls['dateOfBirth'].setValue(o.lastName);
+    this.osobaForm.controls['dateOfBirth'].setValue(o.dateOfBirth);
     this.osobaForm.controls['sex'].setValue(o.sex);
   }
 
