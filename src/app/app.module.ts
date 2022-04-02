@@ -15,6 +15,9 @@ import { OsobyFormularComponent } from './child-components/osoby/child-component
 import { FooterBarComponent } from './child-components/footer-bar/footer-bar.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { VakcinyStrankaComponent } from './child-components/vakciny/vakciny-stranka/vakciny-stranka.component';
+import { VakcinaFormularComponent } from './child-components/vakciny/child-components/vakcina-formular/vakcina-formular.component';
+import { VakcinaZoznamComponent } from './child-components/vakciny/child-components/vakcina-zoznam/vakcina-zoznam.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import {HttpClientModule} from "@angular/common/http";
     HlavnaStrankaComponent,
     OsobyZoznamComponent,
     OsobyFormularComponent,
-    FooterBarComponent
+    FooterBarComponent,
+    VakcinyStrankaComponent,
+    VakcinaFormularComponent,
+    VakcinaZoznamComponent
   ],
     imports: [
         BrowserModule,
