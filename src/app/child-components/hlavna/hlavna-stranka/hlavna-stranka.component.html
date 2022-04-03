@@ -7,6 +7,137 @@
 
 
 <mat-grid-list cols="2" rowHeight="1:1">
-  <mat-grid-tile>Štatistiky, novinky zo sveta</mat-grid-tile>
+  <mat-grid-tile>
+    <div>
+      <div class="same-row">
+        <mat-card class="covid-card">
+          <mat-card-header>
+            <div mat-card-avatar>
+              <img  alt="zemegula" src="assets/worldwide.png">
+            </div>
+            <mat-card-title>Celosvetovo</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table>
+              <tr>
+                <td>
+                  Znovunakazení
+                </td>
+                <td>
+                  {{summaryData?.Global?.NewRecovered | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Celkový počet znovunakazených
+               </td>
+                <td>
+                  {{summaryData?.Global?.TotalRecovered | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Novopotvrdení
+                </td>
+                <td>
+                  {{summaryData?.Global?.NewConfirmed | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Celkový počet potvrdených
+                </td>
+                <td>
+                  {{summaryData?.Global?.TotalConfirmed | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Nové úmrtia
+                </td>
+                <td>
+                  {{summaryData?.Global?.NewDeaths | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Celkový počet úmrtí
+                </td>
+                <td>
+                  {{summaryData?.Global?.TotalDeaths | number}}
+                </td>
+              </tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="same-row">
+        <mat-card class="covid-card">
+          <mat-card-header>
+            <div mat-card-avatar>
+              <img alt="vlajka Slovenska" src="assets/slovakia.png">
+            </div>
+            <mat-card-title>Slovensko</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <table>
+              <tr>
+                <td>
+                  Znovunakazení
+                </td>
+                <td>
+                  {{slovakiaData?.NewRecovered | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Celkový počet znovunakazených
+                </td>
+                <td>
+                  {{slovakiaData?.TotalRecovered | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Novopotvrdení
+                </td>
+                <td>
+                  {{slovakiaData?.NewConfirmed | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Celkový počet potvrdených
+                </td>
+                <td>
+                  {{slovakiaData?.TotalConfirmed | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Nové úmrtia
+                </td>
+                <td>
+                  {{slovakiaData?.NewDeaths | number}}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Celkový počet úmrtí
+                </td>
+                <td>
+                  {{slovakiaData?.TotalDeaths | number}}
+                </td>
+              </tr>
+            </table>
+          </mat-card-content>
+        </mat-card>
+        <div class="same-row" style="font-weight: bold;">
+          Dáta ku dňu: {{currentDate}}
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
   <mat-grid-tile>Očkovacia lotéria (tabuľka random vylosovaní zaočkovaní)</mat-grid-tile>
 </mat-grid-list>

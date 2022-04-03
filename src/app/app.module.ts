@@ -20,6 +20,9 @@ import { VakcinaFormularComponent } from './child-components/vakciny/child-compo
 import { VakcinaZoznamComponent } from './child-components/vakciny/child-components/vakcina-zoznam/vakcina-zoznam.component';
 import {MatGridListModule} from "@angular/material/grid-list";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatCardModule} from "@angular/material/card";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -45,7 +48,10 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
     FormsModule,
     HttpClientModule,
     MatGridListModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
