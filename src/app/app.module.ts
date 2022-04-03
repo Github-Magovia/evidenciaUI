@@ -18,6 +18,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { VakcinyStrankaComponent } from './child-components/vakciny/vakciny-stranka/vakciny-stranka.component';
 import { VakcinaFormularComponent } from './child-components/vakciny/child-components/vakcina-formular/vakcina-formular.component';
 import { VakcinaZoznamComponent } from './child-components/vakciny/child-components/vakcina-zoznam/vakcina-zoznam.component';
+import {MatGridListModule} from "@angular/material/grid-list";
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 @NgModule({
   declarations: [
@@ -32,17 +34,19 @@ import { VakcinaZoznamComponent } from './child-components/vakciny/child-compone
     VakcinaFormularComponent,
     VakcinaZoznamComponent
   ],
-    imports: [
-        BrowserModule,
-        NgbModule,
-        SweetAlert2Module.forRoot(),
-        MdbCollapseModule,
-        RouterModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    NgbModule,
+    SweetAlert2Module.forRoot(),
+    MdbCollapseModule,
+    RouterModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    MatGridListModule,
+    MatProgressBarModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
