@@ -33,23 +33,27 @@ export class VakcinaFormularComponent implements OnInit {
     this.deleteVakcina = new EventEmitter<number>();
     this.vakcinaForm = new FormGroup({
       id: new FormControl(null),
-      nazov: new FormControl(null, [
+      name: new FormControl(null, [
         Validators.required
       ]),
-      typ: new FormControl(null, [
+      type: new FormControl(null, [
         Validators.required
       ]),
-      mnozstvo: new FormControl(null, [
+      amountOfVaccines: new FormControl(null, [
         Validators.required
-      ])
+      ]),
+      amountToCompleteVaccination: new FormControl(null, [
+        Validators.required
+      ]),
     });
   }
 
   private naplnFormular(v: Vakcina): void {
     this.vakcinaForm.controls['id'].setValue(v.id);
-    this.vakcinaForm.controls['nazov'].setValue(v.nazov);
-    this.vakcinaForm.controls['typ'].setValue(v.typ);
-    this.vakcinaForm.controls['mnozstvo'].setValue(v.mnozstvo);
+    this.vakcinaForm.controls['name'].setValue(v.name);
+    this.vakcinaForm.controls['type'].setValue(v.type);
+    this.vakcinaForm.controls['amountOfVaccines'].setValue(v.amountOfVaccines);
+    this.vakcinaForm.controls['amountToCompleteVaccination'].setValue(v.amountToCompleteVaccination);
   }
 
   open() {
@@ -63,9 +67,10 @@ export class VakcinaFormularComponent implements OnInit {
   private spracuj(reason: any): void {
     if (reason === "add") {
       this.createVakcina.emit({
-        nazov: this.vakcinaForm.value.nazov,
-        typ: this.vakcinaForm.value.typ,
-        mnozstvo: this.vakcinaForm.value.mnozstvo,
+        name: this.vakcinaForm.value.name,
+        type: this.vakcinaForm.value.type,
+        amountOfVaccines: this.vakcinaForm.value.amountOfVaccines,
+        amountToCompleteVaccination: this.vakcinaForm.value.amountToCompleteVaccination
       });
       this.toggleAlert(false);
     } else if (reason === "edit") {

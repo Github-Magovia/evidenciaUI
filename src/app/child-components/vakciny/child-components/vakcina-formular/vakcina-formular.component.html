@@ -13,13 +13,19 @@
       </div>
       <!-- Názov vakcíny input -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="nazov">Názov vakcíny: </label>
-        <input type="text" id="nazov" formControlName="vaccineName" class="form-control" />
+        <label class="form-label" for="name">Nazov vakciny: </label>
+        <select id="name" class="form-select" formControlName="name">
+          <option value="Pfizer">Pfizer</option>
+          <option value="Moderna">Moderna</option>
+          <option value="Johnson & Johnson">Johnson & Johnson</option>
+          <option value="Novavax">Novavax</option>
+          <option value="Other">Iné</option>
+        </select>
       </div>
       <!-- Typ vakcíny input -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="typ">Typ vakcíny: </label>
-        <select id="typ" class="form-select" formControlName="type">
+        <label class="form-label" for="type">Typ vakcíny: </label>
+        <select id="type" class="form-select" formControlName="type">
           <option value="mRNA">mRNA vakcína</option>
           <option value="Vector">Vektorová vakcína</option>
           <option value="Other">Iné</option>
@@ -27,8 +33,14 @@
       </div>
       <!-- Množstvo vakcín input -->
       <div class="form-outline datepicker">
-        <label for="amountVaccine" class="form-label">Množstvo vakcín: </label>
-        <input type="text" formControlName="amountVaccine" class="form-control" id="amountVaccine">
+        <label for="amountOfVaccines" class="form-label">Množstvo vakcín: </label>
+        <input type="text" formControlName="amountOfVaccines" class="form-control" id="amountOfVaccines">
+      </div>
+      <br>
+      <!-- Množstvo vakcín plne zaockovanie input -->
+      <div class="form-outline datepicker">
+        <label for="amountToCompleteVaccination" class="form-label">Množstvo vakcín potrebné na plné zaočkovanie: </label>
+        <input type="text" formControlName="amountToCompleteVaccination" class="form-control" id="amountToCompleteVaccination">
       </div>
     </form>
   </div>
