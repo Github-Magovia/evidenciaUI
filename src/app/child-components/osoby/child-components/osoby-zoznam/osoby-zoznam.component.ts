@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {Osoba} from "../../../../../models/osoba.model";
 
 @Component({
@@ -6,9 +6,13 @@ import {Osoba} from "../../../../../models/osoba.model";
   templateUrl: './osoby-zoznam.component.html',
   styleUrls: ['./osoby-zoznam.component.css']
 })
-export class OsobyZoznamComponent implements OnInit {
-  @Input()
-  osoby: Osoba[] = [];
+export class OsobyZoznamComponent implements OnInit, OnChanges {
+  page: number = 1;
+  pageSize: number = 10;
+  collectionSize: number;
+  @Input() isLoaded: boolean;
+  @Input() osoby: Osoba[] = [];
+  osobySlice: Osoba[] = [];
 
   @Output()
   editOsoba: EventEmitter<number> = new EventEmitter<number>();
@@ -16,15 +20,24 @@ export class OsobyZoznamComponent implements OnInit {
   edit(id: number): void { this.editOsoba.emit(id); }
 
 
-  // TODO pagination
-  // refreshOsoby() {
-  //   this.osoby = this.osoby.map((o, i) => ({id: i + 1, ...o}))
-  //     .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-  // }
+  refreshOsoby() {
+    this.osobySlice = this.osoby.map((o, i) => ({id: i + 1, ...o}))
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
 
 
-  constructor() { }
+  constructor() {
+  }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
+
+  ngOnChanges(): void {
+    if(this.isLoaded == true) {
+      this.collectionSize = this.osoby.length;
+      this.refreshOsoby();
+    }
+  }
+
 
 }
