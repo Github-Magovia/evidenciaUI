@@ -10,6 +10,7 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
   page: number = 1;
   pageSize: number = 10;
   collectionSize: number;
+  isCollapsed: boolean = true;
   @Input() isLoaded: boolean;
   @Input() osoby: Osoba[] = [];
   osobySlice: Osoba[] = [];
