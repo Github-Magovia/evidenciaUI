@@ -15,16 +15,16 @@
           <th scope="col">Názov vakcíny</th>
           <th scope="col">Typ vakcíny</th>
           <th scope="col">Množstvo vakcín</th>
+          <th scope="col">Množstvo vakcín potrebné na úplné zaočkovanie</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let vakcina of vakciny" (click)="edit(vakcina.id)" style="cursor: pointer">
           <th scope="row">{{ vakcina.id }}</th>
-          <td>{{vakcina.nazov}}</td>
-          <td>{{vakcina.typ}}</td>
-          <td>
-            <p class="badge bg-primary">Množstvo vakcín</p>
-          </td>
+          <td>{{vakcina.name}}</td>
+          <td>{{vakcina.type}}</td>
+          <td>{{vakcina.amountOfVaccines}}</td>
+          <td>{{vakcina.amountToCompleteVaccination}}</td>
         </tr>
         </tbody>
       </table>
