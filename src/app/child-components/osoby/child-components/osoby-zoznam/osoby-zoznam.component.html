@@ -53,9 +53,9 @@
       <table class="table table-striped table-hover">
         <thead>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Meno</th>
-          <th scope="col">Priezvisko</th>
+          <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>
+          <th scope="col" sortable="firstName" (sort)="onSort($event)">Meno</th>
+          <th scope="col" sortable="lastName" (sort)="onSort($event)">Priezvisko</th>
           <th scope="col">Status</th>
         </tr>
         </thead>

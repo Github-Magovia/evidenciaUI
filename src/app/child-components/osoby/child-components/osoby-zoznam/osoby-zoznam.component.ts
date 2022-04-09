@@ -1,6 +1,9 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, ViewChildren} from '@angular/core';
 import {Osoba} from "../../../../../models/osoba.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SortEvent, SortOsoby} from "./sort-osoby";
+
+const compare = (v1: String | number, v2: String | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
 @Component({
   selector: 'app-osoby-zoznam',
@@ -16,6 +19,7 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
   @Input() isLoaded: boolean;
   @Input() osoby: Osoba[] = [];
   osobySlice: Osoba[] = [];
+  @ViewChildren(SortOsoby) headers: QueryList<SortOsoby>;
 
   @Output()
   editOsoba: EventEmitter<number> = new EventEmitter<number>();
@@ -37,6 +41,21 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
         Validators.required
       ]),
     });
+  }
+
+  // TODO ARROWS
+  onSort({column, direction}: SortEvent) {
+    this.headers.forEach(header => {
+      if (header.sortable !== column) { header.direction = ''; }
+    });
+
+    if (direction === '' || column === '') { this.refreshTable(); }
+    else {
+      this.osobySlice = [...this.osobySlice].sort((a, b) => {
+        const res = compare(a[column], b[column]);
+        return direction === 'asc' ? res : -res;
+      });
+    }
   }
 
   // TODO REGEX
