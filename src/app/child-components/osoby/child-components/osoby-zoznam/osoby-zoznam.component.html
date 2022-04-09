@@ -23,21 +23,21 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
-            <label for="zoznamOsob1" class="col-form-label">Meno: </label>
+            <label for="filter-fName" class="col-form-label">Meno: </label>
             <div>
-              <input id="zoznamOsob1" type="text" class="form-control" formControlName="fName"  (input)="refreshTable()">
+              <input id="filter-fName" type="text" class="form-control" formControlName="fName"  (input)="refreshTable()">
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
-            <label for="zoznamOsob2" class="col-form-label">Priezvisko: </label>
+            <label for="filter-lName" class="col-form-label">Priezvisko: </label>
             <div>
-              <input id="zoznamOsob2" type="text" class="form-control" formControlName="lName"  (input)="refreshTable()">
+              <input id="filter-lName" type="text" class="form-control" formControlName="lName"  (input)="refreshTable()">
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
-            <label for="zoznamOsob3" class="col-form-label">Status: </label>
+            <label for="filter-status" class="col-form-label">Status: </label>
             <div>
-              <input id="zoznamOsob3" type="text" class="form-control" name="searchTerm" disabled>
+              <input id="filter-status" type="text" class="form-control" name="searchTerm" disabled>
             </div>
           </div>
           <div class="col-12 d-flex justify-content-end">
@@ -47,6 +47,7 @@
       </div>
     </form>
   </div>
+
   <!-- DATATABLE -->
   <form>
     <div class="table-responsive scroll-table">
@@ -72,6 +73,7 @@
       </table>
     </div>
   </form>
+
   <!-- PAGINATION -->
   <div class="p-2">
     <ngb-pagination class="d-flex col-12 justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshTable()">
@@ -83,6 +85,7 @@
         <option [ngValue]="10">10 položiek na stranu</option>
         <option [ngValue]="25">25 položiek na stranu</option>
         <option [ngValue]="50">50 položiek na stranu</option>
+        <option [ngValue]="100">100 položiek na stranu</option>
       </select>
     </div>
   </div>
