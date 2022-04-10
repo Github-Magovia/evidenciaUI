@@ -1,14 +1,16 @@
 export class Vakcina{
   id?: number;
-  nazov: String;
-  typ: String;
-  mnozstvo: number;
+  name: String;
+  type: String;
+  amountOfVaccines: number;
+  amountToCompleteVaccination: number;
 
 
-  constructor(id: number, nazov: String, typ: String, mnozstvo: number) {
+  constructor(id: number, name: String, type: String, amountOfVaccines: number, amountToCompleteVaccination) {
     this.id = id;
-    this.nazov = nazov;
-    this.typ = typ;
-    this.mnozstvo = mnozstvo;
+    this.name = name;
+    this.type = type;
+    this.amountOfVaccines = amountOfVaccines;
+    this.amountToCompleteVaccination = amountToCompleteVaccination;
   }
 }
