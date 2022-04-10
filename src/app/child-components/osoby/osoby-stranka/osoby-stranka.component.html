@@ -2,4 +2,4 @@
                     (createOsoba)="pridajOsobu($event)"
                     (editOsoba)="upravOsobu($event)"
                     (deleteOsoba)="zmazOsobu($event)"></app-osoby-formular>
-<app-osoby-zoznam [osoby]="osoby" (editOsoba)="nastavOsobu($event)"></app-osoby-zoznam>
+<app-osoby-zoznam [osoby]="osoby" [isLoaded]="isLoaded" (editOsoba)="nastavOsobu($event)"></app-osoby-zoznam>

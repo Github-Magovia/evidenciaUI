@@ -18,6 +18,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { VakcinyStrankaComponent } from './child-components/vakciny/vakciny-stranka/vakciny-stranka.component';
 import { VakcinaFormularComponent } from './child-components/vakciny/child-components/vakcina-formular/vakcina-formular.component';
 import { VakcinaZoznamComponent } from './child-components/vakciny/child-components/vakcina-zoznam/vakcina-zoznam.component';
+import {SortOsoby} from "./child-components/osoby/child-components/osoby-zoznam/sort-osoby";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { VakcinaZoznamComponent } from './child-components/vakciny/child-compone
     FooterBarComponent,
     VakcinyStrankaComponent,
     VakcinaFormularComponent,
-    VakcinaZoznamComponent
+    VakcinaZoznamComponent,
+    SortOsoby
   ],
     imports: [
         BrowserModule,
