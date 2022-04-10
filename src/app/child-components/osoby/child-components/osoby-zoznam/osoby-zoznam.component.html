@@ -4,7 +4,7 @@
   <!-- SEARCH BUTTON -->
   <div class="m-2">
     <button type="button" class="btn btn-primary"
-            (click)="collapse.toggle(); filtering.reset();"
+            (click)="collapse.toggle(); filtering.reset(); refreshTable();"
             [attr.aria-expanded]="!isCollapsed"
             aria-controls="collapseExample">
       Vyhladávanie
@@ -41,7 +41,7 @@
             </div>
           </div>
           <div class="col-12 d-flex justify-content-end">
-            <button class="btn btn-primary" (click)="filtering.reset();">Resetovať filtre</button>
+            <button class="btn btn-primary" (click)="filtering.reset(); refreshTable();">Resetovať filtre</button>
           </div>
         </div>
       </div>

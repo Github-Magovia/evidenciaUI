@@ -11,7 +11,7 @@ import {VakcinaService} from "../services/vakcina.service";
   styleUrls: ['./vakciny-stranka.component.css']
 })
 export class VakcinyStrankaComponent implements OnInit {
-
+  isLoaded: boolean = false;
   vakciny: Vakcina[] = [];
   private sub: Subscription = new Subscription();
   vakcina?: Vakcina;
@@ -21,8 +21,10 @@ export class VakcinyStrankaComponent implements OnInit {
   constructor(private vakcinaSrv: VakcinaService) { }
 
   refreshVakcina(): void {
+    this.isLoaded = false;
     this.sub.add(this.vakcinaSrv.getVaccine().subscribe(data => {
       this.vakciny = data;
+      this.isLoaded = true;
     }));
   }
 

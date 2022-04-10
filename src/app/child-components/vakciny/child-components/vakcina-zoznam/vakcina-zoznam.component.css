@@ -1,0 +1,10 @@
+.scroll-table {
+  height: 50vh;
+  overflow: auto;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+  background: white;
+}

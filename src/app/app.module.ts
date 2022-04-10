@@ -19,6 +19,7 @@ import { VakcinyStrankaComponent } from './child-components/vakciny/vakciny-stra
 import { VakcinaFormularComponent } from './child-components/vakciny/child-components/vakcina-formular/vakcina-formular.component';
 import { VakcinaZoznamComponent } from './child-components/vakciny/child-components/vakcina-zoznam/vakcina-zoznam.component';
 import {SortOsoby} from "./child-components/osoby/child-components/osoby-zoznam/sort-osoby";
+import {SortVakciny} from "./child-components/vakciny/child-components/vakcina-zoznam/sort-vakciny";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {SortOsoby} from "./child-components/osoby/child-components/osoby-zoznam/
     VakcinyStrankaComponent,
     VakcinaFormularComponent,
     VakcinaZoznamComponent,
-    SortOsoby
+    SortOsoby,
+    SortVakciny
   ],
     imports: [
         BrowserModule,

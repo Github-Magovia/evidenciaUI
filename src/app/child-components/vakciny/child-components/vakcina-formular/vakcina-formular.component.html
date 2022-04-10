@@ -14,13 +14,7 @@
       <!-- Názov vakcíny input -->
       <div class="form-outline mb-4">
         <label class="form-label" for="name">Nazov vakciny: </label>
-        <select id="name" class="form-select" formControlName="name">
-          <option value="Pfizer">Pfizer</option>
-          <option value="Moderna">Moderna</option>
-          <option value="Johnson & Johnson">Johnson & Johnson</option>
-          <option value="Novavax">Novavax</option>
-          <option value="Other">Iné</option>
-        </select>
+        <input type="text" formControlName="name" class="form-control" id="name">
       </div>
       <!-- Typ vakcíny input -->
       <div class="form-outline mb-4">
@@ -32,15 +26,15 @@
         </select>
       </div>
       <!-- Množstvo vakcín input -->
-      <div class="form-outline datepicker">
+      <div class="form-outline">
         <label for="amountOfVaccines" class="form-label">Množstvo vakcín: </label>
-        <input type="text" formControlName="amountOfVaccines" class="form-control" id="amountOfVaccines">
+        <input type="number" formControlName="amountOfVaccines" min="0" class="form-control" id="amountOfVaccines">
       </div>
       <br>
       <!-- Množstvo vakcín plne zaockovanie input -->
-      <div class="form-outline datepicker">
+      <div class="form-outline">
         <label for="amountToCompleteVaccination" class="form-label">Množstvo vakcín potrebné na plné zaočkovanie: </label>
-        <input type="text" formControlName="amountToCompleteVaccination" class="form-control" id="amountToCompleteVaccination">
+        <input type="number" min="1" formControlName="amountToCompleteVaccination" class="form-control" id="amountToCompleteVaccination">
       </div>
     </form>
   </div>
