@@ -1,0 +1,5 @@
+<app-vakcinacia-formular [vakcinacia]="vakcinacia"
+                      (createVakcinacia)="pridajVakcinaciu($event)"
+                      (editVakcinacia)="upravVakcinaciu($event)"
+                      (deleteVakcinacia)="zmazVakcinaciu($event)"></app-vakcinacia-formular>
+<app-vakcinacia-zoznam [vakcinacia]="vakcinacie" [isLoaded]="isLoaded" (editVakcinacia)="nastavVakcinaciu($event)"></app-vakcinacia-zoznam>
