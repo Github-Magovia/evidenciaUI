@@ -51,7 +51,8 @@ export class OsobyFormularComponent implements OnInit {
       ]),
       sex: new FormControl(null, [
         Validators.required
-      ])
+      ]),
+      status: new FormControl(null)
     });
   }
 
@@ -61,6 +62,7 @@ export class OsobyFormularComponent implements OnInit {
     this.osobaForm.controls['lastName'].setValue(o.lastName);
     this.osobaForm.controls['dateOfBirth'].setValue(o.dateOfBirth);
     this.osobaForm.controls['sex'].setValue(o.sex);
+    this.osobaForm.controls['status'].setValue(o.status);
   }
 
   open() {
@@ -77,7 +79,8 @@ export class OsobyFormularComponent implements OnInit {
         firstName: this.osobaForm.value.firstName,
         lastName: this.osobaForm.value.lastName,
         dateOfBirth: this.osobaForm.value.dateOfBirth,
-        sex: this.osobaForm.value.sex
+        sex: this.osobaForm.value.sex,
+        status: this.osobaForm.value.status
       });
       this.toggleAlert(false);
     } else if (reason === "edit") {

@@ -65,8 +65,12 @@
           <th scope="row">{{ osoba.id }}</th>
           <td>{{osoba.firstName}}</td>
           <td>{{osoba.lastName}}</td>
-          <td>
-            <p class="badge bg-primary">Plne zaočkovaný</p>
+          <td [ngSwitch]="osoba.status">
+            <p *ngSwitchCase="'NONE'" class="badge bg-danger">Nezaočkovaný</p>
+            <p *ngSwitchCase="'PARTIAL'" class="badge bg-secondary">Čiastočne zaočkovaný</p>
+            <p *ngSwitchCase="'FULL'" class="badge bg-success">Plne zaočkovaný</p>
+            <p *ngSwitchCase="'BOOSTER'" class="badge bg-primary">Zaočkovaný - booster</p>
+            <p *ngSwitchDefault class="badge bg-dark">Neuvedené</p>
           </td>
         </tr>
         </tbody>
