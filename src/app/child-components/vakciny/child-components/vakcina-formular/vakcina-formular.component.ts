@@ -9,10 +9,10 @@ import {Vakcina} from "../../../../../models/vakcina.model";
   styleUrls: ['./vakcina-formular.component.css']
 })
 export class VakcinaFormularComponent implements OnInit {
-
   vakcinaForm: FormGroup;
   @ViewChild('content', { static: true }) modal: ElementRef;
   showAlert: boolean;
+  isEditing: boolean = false;
 
   @Input()
   set vakcina(data: Vakcina) {
@@ -25,7 +25,6 @@ export class VakcinaFormularComponent implements OnInit {
   @Output()
   deleteVakcina: EventEmitter<number>;
 
-  //TODO Fix Date with backend
   constructor(private modalService: NgbModal) {
     this.showAlert = false;
     this.createVakcina = new EventEmitter<Vakcina>();
@@ -40,11 +39,21 @@ export class VakcinaFormularComponent implements OnInit {
         Validators.required
       ]),
       amountOfVaccines: new FormControl(null, [
-        Validators.required
+        Validators.required,
+        Validators.min(0)
       ]),
       amountToCompleteVaccination: new FormControl(null, [
-        Validators.required
+        Validators.required,
+        Validators.min(1)
       ]),
+      daysToFullVaccination: new FormControl(null, [
+        Validators.required,
+        Validators.min(0)
+      ]),
+      durationOfVaccine: new FormControl(null, [
+        Validators.required,
+        Validators.min(1)
+      ])
     });
   }
 
@@ -54,6 +63,8 @@ export class VakcinaFormularComponent implements OnInit {
     this.vakcinaForm.controls['type'].setValue(v.type);
     this.vakcinaForm.controls['amountOfVaccines'].setValue(v.amountOfVaccines);
     this.vakcinaForm.controls['amountToCompleteVaccination'].setValue(v.amountToCompleteVaccination);
+    this.vakcinaForm.controls['daysToFullVaccination'].setValue(v.daysToFullVaccination);
+    this.vakcinaForm.controls['durationOfVaccine'].setValue(v.durationOfVaccine);
   }
 
   open() {
@@ -70,7 +81,9 @@ export class VakcinaFormularComponent implements OnInit {
         name: this.vakcinaForm.value.name,
         type: this.vakcinaForm.value.type,
         amountOfVaccines: this.vakcinaForm.value.amountOfVaccines,
-        amountToCompleteVaccination: this.vakcinaForm.value.amountToCompleteVaccination
+        amountToCompleteVaccination: this.vakcinaForm.value.amountToCompleteVaccination,
+        daysToFullVaccination: this.vakcinaForm.value.daysToFullVaccination,
+        durationOfVaccine: this.vakcinaForm.value.durationOfVaccine
       });
       this.toggleAlert(false);
     } else if (reason === "edit") {
@@ -78,9 +91,12 @@ export class VakcinaFormularComponent implements OnInit {
       this.toggleAlert(false);
     } else if (reason === "delete") {
       this.zmaz();
-    } else {
+    } else if (reason === "cancel") {
+      this.toggleAlert(true);
+    } else if (this.isEditing) {
       this.toggleAlert(true);
     }
+    this.toggleEditing(false);
     this.zastavUpravu();
   }
 
@@ -99,6 +115,8 @@ export class VakcinaFormularComponent implements OnInit {
   }
 
   public toggleAlert(val: boolean) { this.showAlert = val; }
+
+  public toggleEditing(val: boolean) { this.isEditing = val; }
 
   ngOnInit(): void {
   }
