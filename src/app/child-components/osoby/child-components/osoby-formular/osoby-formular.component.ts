@@ -20,6 +20,7 @@ export class OsobyFormularComponent implements OnInit {
   osobaForm: FormGroup;
   @ViewChild('content', { static: true }) modal: ElementRef;
   showAlert: boolean;
+  isEditing: boolean = false;
 
   @Input()
   set osoba(data: Osoba) {
@@ -32,7 +33,6 @@ export class OsobyFormularComponent implements OnInit {
   @Output()
   deleteOsoba: EventEmitter<number>;
 
-  //TODO Fix Date with backend
   constructor(private modalService: NgbModal) {
     this.showAlert = false;
     this.createOsoba = new EventEmitter<Osoba>();
@@ -51,7 +51,10 @@ export class OsobyFormularComponent implements OnInit {
       ]),
       sex: new FormControl(null, [
         Validators.required
-      ])
+      ]),
+      status: new FormControl(null),
+      vaccineStart: new FormControl(null),
+      vaccineEnd: new FormControl(null)
     });
   }
 
@@ -61,6 +64,9 @@ export class OsobyFormularComponent implements OnInit {
     this.osobaForm.controls['lastName'].setValue(o.lastName);
     this.osobaForm.controls['dateOfBirth'].setValue(o.dateOfBirth);
     this.osobaForm.controls['sex'].setValue(o.sex);
+    this.osobaForm.controls['status'].setValue(o.status);
+    this.osobaForm.controls['vaccineStart'].setValue(o.vaccineStart);
+    this.osobaForm.controls['vaccineEnd'].setValue(o.vaccineEnd);
   }
 
   open() {
@@ -85,9 +91,12 @@ export class OsobyFormularComponent implements OnInit {
       this.toggleAlert(false);
     } else if (reason === "delete") {
       this.zmaz();
-    } else {
+    } else if (reason === "cancel") {
+      this.toggleAlert(true);
+    } else if (this.isEditing) {
       this.toggleAlert(true);
     }
+    this.toggleEditing(false);
     this.zastavUpravu();
   }
 
@@ -106,6 +115,8 @@ export class OsobyFormularComponent implements OnInit {
   }
 
   public toggleAlert(val: boolean) { this.showAlert = val; }
+
+  public toggleEditing(val: boolean) { this.isEditing = val; }
 
   ngOnInit(): void {
   }

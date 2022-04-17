@@ -1,5 +1,5 @@
 <div class="container-fluid mb-5" *ngIf="isLoaded == true">
-  <p>Celkový počet osôb v systéme: {{collectionSize}}</p>
+  <p>Celkový počet osôb v systéme: {{osoby.length}}</p>
 
   <!-- SEARCH BUTTON -->
   <div class="m-2">
@@ -13,6 +13,7 @@
 
   <!-- VYHLADAVACIE POLIA - COLLAPSIBLE -->
   <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <p class="mt-4 mx-2 mb-0">Celkový počet osôb v systéme, ktoré vyhovujú kritériam: {{collectionSize}}</p>
     <form [formGroup]="filtering">
       <div class="container-fluid mb-3">
         <div class="row">
@@ -37,7 +38,13 @@
           <div class="col-sm-12 col-md-4">
             <label for="filter-status" class="col-form-label">Status: </label>
             <div>
-              <input id="filter-status" type="text" class="form-control" name="searchTerm" disabled>
+              <select id="filter-status" formControlName="vStatus" class="form-select" (change)="refreshTable()">
+                <option></option>
+                <option value="NONE">Nezaočkovaní</option>
+                <option value="PARTIAL">Čiastočne zaočkovaní</option>
+                <option value="FULL">Plne zaočkovaní</option>
+                <option value="BOOSTER">Zaočkovaní - booster</option>
+              </select>
             </div>
           </div>
           <div class="col-12 d-flex justify-content-end">
@@ -48,38 +55,9 @@
     </form>
   </div>
 
-  <!-- DATATABLE -->
-  <form>
-    <div class="table-responsive scroll-table">
-      <table class="table table-striped table-hover">
-        <thead>
-        <tr>
-          <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>
-          <th scope="col" sortable="firstName" (sort)="onSort($event)">Meno</th>
-          <th scope="col" sortable="lastName" (sort)="onSort($event)">Priezvisko</th>
-          <th scope="col">Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let osoba of osobySlice" (click)="edit(osoba.id)" style="cursor: pointer">
-          <th scope="row">{{ osoba.id }}</th>
-          <td>{{osoba.firstName}}</td>
-          <td>{{osoba.lastName}}</td>
-          <td>
-            <p class="badge bg-primary">Plne zaočkovaný</p>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    </div>
-  </form>
-
-  <!-- PAGINATION -->
-  <div class="p-2">
-    <ngb-pagination class="d-flex col-12 justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshTable()">
-    </ngb-pagination>
-
-    <div class="d-flex col-12 justify-content-center">
+  <!-- PAGINATION TOP -->
+  <div class="p-2 row d-flex">
+    <div class="d-flex col-12 justify-content-end">
       <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshTable()">
         <option [ngValue]="5">5 položiek na stranu</option>
         <option [ngValue]="10">10 položiek na stranu</option>
@@ -88,6 +66,43 @@
         <option [ngValue]="100">100 položiek na stranu</option>
       </select>
     </div>
+  </div>
+
+  <!-- DATATABLE -->
+  <form>
+    <div class="table-responsive">
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>
+          <th scope="col" sortable="firstName" (sort)="onSort($event)">Meno</th>
+          <th scope="col" sortable="lastName" (sort)="onSort($event)">Priezvisko</th>
+          <th scope="col" sortable="status" (sort)="onSort($event)">Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let osoba of osobySlice" (click)="edit(osoba.id)" style="cursor: pointer">
+          <th scope="row">{{ osoba.id }}</th>
+          <td>{{osoba.firstName}}</td>
+          <td>{{osoba.lastName}}</td>
+          <td [ngSwitch]="osoba.status">
+            <p *ngSwitchCase="'NONE'" class="badge bg-danger">Nezaočkovaní</p>
+            <p *ngSwitchCase="'PARTIAL'" class="badge bg-secondary">Čiastočne zaočkovaní</p>
+            <p *ngSwitchCase="'FULL'" class="badge bg-success">Plne zaočkovaní</p>
+            <p *ngSwitchCase="'BOOSTER'" class="badge bg-primary">Zaočkovaní - booster</p>
+            <p *ngSwitchDefault class="badge bg-dark">Neuvedené</p>
+            <i *ngIf="checkDuration(osoba.vaccineEnd)" class="bi bi-exclamation-circle-fill text-danger mx-1"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+
+  <!-- PAGINATION BOTTOM -->
+  <div class="p-2">
+    <ngb-pagination class="d-flex col-12 justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshTable()">
+    </ngb-pagination>
   </div>
 </div>
 
