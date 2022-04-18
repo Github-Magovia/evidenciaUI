@@ -16,6 +16,10 @@ const routes: Routes = [
   {
     path: 'vakciny',
     component: VakcinyStrankaComponent
+  },
+  {
+    path: 'ockovania',
+    component: OckovanieStrankaComponent
   }
 ];
 
