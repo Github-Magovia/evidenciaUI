@@ -1,0 +1,5 @@
+<app-ockovanie-formular [ockovanie]="ockovanie"
+                         (createOckovanie)="pridajOckovanie($event)"
+                         (editOckovanie)="upravOckovanie($event)"
+                         (deleteOckovanie)="zmazOckovanie($event)"></app-ockovanie-formular>
+<app-ockovanie-zoznam [ockovanie]="ockovania" [isLoaded]="isLoaded" (editOckovanie)="nastavOckovanie($event)"></app-ockovanie-zoznam>

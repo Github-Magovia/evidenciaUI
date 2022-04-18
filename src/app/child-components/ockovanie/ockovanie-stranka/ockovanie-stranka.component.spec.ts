@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OckovanieZoznamComponent } from './ockovanie-zoznam.component';
+import { OckovanieStrankaComponent } from './ockovanie-stranka.component';
 
-describe('OckovanieZoznamComponent', () => {
-  let component: OckovanieZoznamComponent;
-  let fixture: ComponentFixture<OckovanieZoznamComponent>;
+describe('OckovanieStrankaComponent', () => {
+  let component: OckovanieStrankaComponent;
+  let fixture: ComponentFixture<OckovanieStrankaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OckovanieZoznamComponent ]
+      declarations: [ OckovanieStrankaComponent ]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OckovanieZoznamComponent);
+    fixture = TestBed.createComponent(OckovanieStrankaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

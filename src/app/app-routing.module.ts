@@ -3,6 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 import {HlavnaStrankaComponent} from "./child-components/hlavna/hlavna-stranka/hlavna-stranka.component";
 import {OsobyStrankaComponent} from "./child-components/osoby/osoby-stranka/osoby-stranka.component";
 import {VakcinyStrankaComponent} from "./child-components/vakciny/vakciny-stranka/vakciny-stranka.component";
+import {OckovanieStrankaComponent} from "./child-components/ockovanie/ockovanie-stranka/ockovanie-stranka.component";
 
 const routes: Routes = [
   {

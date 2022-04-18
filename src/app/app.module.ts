@@ -20,6 +20,14 @@ import { VakcinaFormularComponent } from './child-components/vakciny/child-compo
 import { VakcinaZoznamComponent } from './child-components/vakciny/child-components/vakcina-zoznam/vakcina-zoznam.component';
 import {SortOsoby} from "./child-components/osoby/child-components/osoby-zoznam/sort-osoby";
 import {SortVakciny} from "./child-components/vakciny/child-components/vakcina-zoznam/sort-vakciny";
+import {SortOckovanie} from "./child-components/ockovanie/child-components/ockovanie-zoznam/sort-ockovanie";
+import {
+  OckovanieZoznamComponent
+} from "./child-components/ockovanie/child-components/ockovanie-zoznam/ockovanie-zoznam.component";
+import {OckovanieStrankaComponent} from "./child-components/ockovanie/ockovanie-stranka/ockovanie-stranka.component";
+import {
+  OckovanieFormularComponent
+} from "./child-components/ockovanie/child-components/ockovanie-formular/ockovanie-formular.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +42,11 @@ import {SortVakciny} from "./child-components/vakciny/child-components/vakcina-z
     VakcinaFormularComponent,
     VakcinaZoznamComponent,
     SortOsoby,
-    SortVakciny
+    SortVakciny,
+    SortOckovanie,
+    OckovanieZoznamComponent,
+    OckovanieStrankaComponent,
+    OckovanieFormularComponent
   ],
     imports: [
         BrowserModule,

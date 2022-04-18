@@ -1,0 +1,108 @@
+<div class="container-fluid mb-5" *ngIf="isLoaded == true">
+  <p>Celkový počet vakcín v systéme: {{collectionSize}}</p>
+
+  <!-- SEARCH BUTTON -->
+  <div class="m-2">
+    <button type="button" class="btn btn-primary"
+            (click)="collapse.toggle(); filtering.reset(); refreshTable();"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample">
+      Vyhladávanie
+    </button>
+  </div>
+
+  <!-- VYHLADAVACIE POLIA - COLLAPSIBLE -->
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <form [formGroup]="filtering">
+      <div class="container-fluid mb-3">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-id" class="col-form-label">ID: </label>
+            <div>
+              <input id="filter-id" type="number" min="0" class="form-control" formControlName="id"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-name" class="col-form-label">Názov: </label>
+            <div>
+              <input id="filter-name" type="text" class="form-control" formControlName="vName"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <!-- TODO SELECT -->
+            <label for="filter-type" class="col-form-label">Typ: </label>
+            <div>
+              <input id="filter-type" type="text" class="form-control" formControlName="vType"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-amount" class="col-form-label">Počet: </label>
+            <div>
+              <input id="filter-amount" type="number" min="0" class="form-control" formControlName="vAmount"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-full" class="col-form-label">Počet na plné zaočkovanie: </label>
+            <div>
+              <input id="filter-full" type="number" min="1" class="form-control" formControlName="vFull"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-end">
+            <button class="btn btn-primary" (click)="filtering.reset(); refreshTable();">Resetovať filtre</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- DATATABLE -->
+  <form>
+    <div class="table-responsive scroll-table">
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col" sortableVaccination="id" (sort)="onSort($event)">ID</th>
+          <th scope="col" sortableVaccination="idPerson" (sort)="onSort($event)">ID osoby</th>
+          <th scope="col" sortableVaccination="idVaccine" (sort)="onSort($event)">ID vakcíny</th>
+          <th scope="col" sortableVaccination="firstName" (sort)="onSort($event)">Meno osoby</th>
+          <th scope="col" sortableVaccination="lastName" (sort)="onSort($event)">Priezvisko osoby</th>
+          <th scope="col" sortableVaccination="type" (sort)="onSort($event)">Typ vakcíny</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let ockovanie of ockovanieSlice" (click)="edit(ockovanie.id)" style="cursor: pointer">
+          <th scope="row">{{ ockovanie.id }}</th>
+          <td>{{ockovanie.idPerson}}</td>
+          <td>{{ockovanie.idVaccine}}</td>
+          <td>{{ockovanie.firstName}}</td>
+          <td>{{ockovanie.lastName}}</td>
+          <td>{{ockovanie.type}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+
+  <!-- PAGINATION -->
+  <div class="p-2">
+    <ngb-pagination class="d-flex col-12 justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshTable()">
+    </ngb-pagination>
+
+    <div class="d-flex col-12 justify-content-center">
+      <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshTable()">
+        <option [ngValue]="5">5 položiek na stranu</option>
+        <option [ngValue]="10">10 položiek na stranu</option>
+        <option [ngValue]="25">25 položiek na stranu</option>
+        <option [ngValue]="50">50 položiek na stranu</option>
+        <option [ngValue]="100">100 položiek na stranu</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- SPINNER -->
+<div class="container-fluid d-flex justify-content-center m-5" *ngIf="isLoaded == false">
+  <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
