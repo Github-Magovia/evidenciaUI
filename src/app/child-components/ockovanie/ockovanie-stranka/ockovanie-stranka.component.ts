@@ -12,7 +12,7 @@ import {OckovanieService} from "../services/ockovanie.service";
 export class OckovanieStrankaComponent implements OnInit {
 
   isLoaded: boolean = false;
-  ockovanie: Ockovanie[] = [];
+  ockovania: Ockovanie[] = [];
   private sub: Subscription = new Subscription();
   ockovanie?: Ockovanie;
   @ViewChild(OckovanieFormularComponent) formular: OckovanieFormularComponent;
@@ -23,7 +23,7 @@ export class OckovanieStrankaComponent implements OnInit {
   refreshOckovanie(): void {
     this.isLoaded = false;
     this.sub.add(this.ockovanieSrv.getVaccination().subscribe(data => {
-      this.ockovanie = data;
+      this.ockovania = data;
       this.isLoaded = true;
     }));
   }
