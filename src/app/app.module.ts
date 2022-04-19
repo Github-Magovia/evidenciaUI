@@ -36,17 +36,22 @@ import {SortVakciny} from "./child-components/vakciny/child-components/vakcina-z
     SortOsoby,
     SortVakciny
   ],
-    imports: [
-        BrowserModule,
-        NgbModule,
-        SweetAlert2Module.forRoot(),
-        MdbCollapseModule,
-        RouterModule,
-        AppRoutingModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    NgbModule,
+    SweetAlert2Module.forRoot(),
+    MdbCollapseModule,
+    RouterModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
+    MatGridListModule,
+    MatProgressBarModule,
+    BrowserAnimationsModule,
+    MatCardModule,
+    MatSelectModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
