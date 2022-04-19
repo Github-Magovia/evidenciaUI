@@ -33,6 +33,18 @@ export class OckovanieStrankaComponent implements OnInit {
       this.isLoaded = true;
     }));
   }
+  refreshOsoby(): void {
+    this.sub.add(this.osobySrv.getPeople().subscribe(data=>{
+      this.osoby = data;
+      this.isLoaded = true;
+    }));
+  }
+  refreshVakciny(): void {
+    this.sub.add(this.vakcinySrv.getVaccine().subscribe(data=>{
+      this.vakciny = data;
+      this.isLoaded = true;
+    }));
+  }
 
   nastavOckovanie(id: number): void {
     this.sub.add(this.ockovanieSrv.getVaccinationById(id).subscribe(data => {
@@ -64,6 +76,8 @@ export class OckovanieStrankaComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshOckovanie();
+    this.refreshOsoby();
+    this.refreshVakciny();
   }
 
   ngOnDestroy(): void { this.sub.unsubscribe(); }
