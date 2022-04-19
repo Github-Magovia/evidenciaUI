@@ -40,6 +40,9 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
         Validators.minLength(1),
         Validators.required
       ]),
+      vStatus: new FormControl(null, [
+        Validators.required
+      ])
     });
   }
 
@@ -65,6 +68,12 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
       this.osobySlice = this.filterOut();
       this.refreshSearch();
     }
+  }
+
+  checkDuration(date: string): boolean {
+    if (date !== null)
+      return new Date().getTime() > Date.parse(date);
+    return false;
   }
 
   private refreshOsoby(): void {
@@ -98,6 +107,12 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
       filter = this.filtering.controls['lName'].value.toLocaleLowerCase();
       filtred = filtred.filter((person: Osoba) => {
         return person.lastName.toLocaleLowerCase().match(filter);
+      });
+    }
+    if(this.filtering.controls['vStatus'].valid){
+      filter = this.filtering.controls['vStatus'].value;
+      filtred = filtred.filter((person: Osoba) => {
+        return person.status.toString().match(filter);
       });
     }
     return filtred;

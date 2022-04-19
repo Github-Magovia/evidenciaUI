@@ -1,2 +1,61 @@
-<p>Hlavna-stranka TODO</p>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="container-fluid bg-info p-1 text-white">
+  <br>
+  <h1 class="text-center">COVID-19 štatistiky</h1>
+  <h4 class="text-center">Dátum: {{myDate | date:'d/MMM/YYYY, hh:mm:ss'}} </h4>
+</div>
+
+<div class="bg-custom"></div>
+
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-4"><h2 class="bi-text-right">Krajina: </h2></div>
+    <div class="col-md-4"><select (change)="getCountry($event.target.value)" class="form-control">
+      <option *ngFor="let c of countries">
+        {{c.Country}}
+      </option>
+    </select></div>
+  </div>
+</div>
+
+
+
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center text-white bg-success p-3">
+          <h2>{{country}} potvrdení </h2>
+          <h3>{{confirmed}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center text-white bg-primary p-3">
+          <h2>{{country}} aktívne prípady</h2>
+          <h3>{{active}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center text-white bg-danger p-3">
+          <h2>{{country}} mŕtvi</h2>
+          <h3>{{death}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<!--  //Ockovacia loteria-->
+</div>
+
+
+
+
+
+

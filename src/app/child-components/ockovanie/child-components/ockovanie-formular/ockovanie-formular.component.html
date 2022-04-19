@@ -1,0 +1,51 @@
+<ng-template #content let-modal>
+  <div class="modal-header bg-light">
+    <h4 class="modal-title" id="modal-basic-title">Pridať očkovanie</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.close('cancel')"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="ockovanieForm">
+      <!-- ID input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="id">ID: </label>
+        <input type="number" id="id" readonly formControlName="id" class="form-control" />
+        <small class="small tooltip">ID bude priradené automaticky.</small>
+      </div>
+      <!-- Osoba,select -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="idPerson">Vyber osobu: </label>
+        <select  formControlName="idPerson" class="form-select" id="idPerson">
+          <option *ngFor="let osoba of osoby" value="{{osoba.id}}">({{osoba.id}}) {{osoba.firstName}} {{osoba.lastName}}</option>
+        </select>
+      </div>
+      <!-- Vakcina,select -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="idVaccine">Vyber vakcínu: </label>
+        <select id="idVaccine" class="form-select" formControlName="idVaccine">
+          <option *ngFor="let vakcina of vakciny" value="{{vakcina.id}}">({{vakcina.id}}) {{vakcina.name}}</option>
+        </select>
+      </div>
+      <!-- datum -->
+      <div class="form-outline datepicker">
+        <label class="form-label" for="datNar">Dátum očkovania: </label>
+        <input type="date" formControlName="dateOfVaccination" class="form-control" id="datNar">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer bg-light">
+    <button type="button" class="btn btn-success"
+            *ngIf="ockovanieForm.value.id === null"
+            (click)="modal.close('add')"
+            [attr.disabled]="ockovanieForm.valid? null : true">Pridaj</button>
+    <button type="button" class="btn btn-info"
+            *ngIf="ockovanieForm.value.id !== null"
+            (click)="modal.close('edit')"
+            [attr.disabled]="ockovanieForm.valid? null : true">Upraviť</button>
+    <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">Zrušiť</button>
+  </div>
+</ng-template>
+
+<ngb-alert class="alert alert-warning" *ngIf="showAlert" (closed)="toggleAlert(false)">Modifikácia očkovania bola zrušená.</ngb-alert>
+<button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open()">Pridaj očkovanie</button>
+
+<hr>
