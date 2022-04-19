@@ -11,30 +11,20 @@
         <input type="number" id="id" readonly formControlName="id" class="form-control" />
         <small class="small tooltip">ID bude priradené automaticky.</small>
       </div>
-      <!-- Osoba vakcinacie input -->
+      <!-- Osoba,select -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="name">Nazov vakciny: </label>
-        <input type="text" formControlName="name" class="form-control" id="name">
+        <label class="form-label" for="name">Vyber osobu: </label>
+        <select type="text" formControlName="name" class="form-control" id="name">
+        </select>
       </div>
-      <!-- Vakcina vakcinacia input -->
+      <!-- Vakcina,select -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="type">Typ vakcíny: </label>
+        <label class="form-label" for="type">Vyber vakcínu: </label>
         <select id="type" class="form-select" formControlName="type">
           <option value="mRNA">mRNA vakcína</option>
           <option value="Vector">Vektorová vakcína</option>
           <option value="Other">Iné</option>
         </select>
-      </div>
-      <!-- Množstvo vakcín input -->
-      <div class="form-outline">
-        <label for="amountOfVaccines" class="form-label">Množstvo vakcín: </label>
-        <input type="number" formControlName="amountOfVaccines" min="0" class="form-control" id="amountOfVaccines">
-      </div>
-      <br>
-      <!-- Množstvo vakcín plne zaockovanie input -->
-      <div class="form-outline">
-        <label for="amountToCompleteVaccination" class="form-label">Množstvo vakcín potrebné na plné zaočkovanie: </label>
-        <input type="number" min="1" formControlName="amountToCompleteVaccination" class="form-control" id="amountToCompleteVaccination">
       </div>
     </form>
   </div>
@@ -47,8 +37,6 @@
             *ngIf="ockovanieForm.value.id !== null"
             (click)="modal.close('edit')"
             [attr.disabled]="ockovanieForm.valid? null : true">Upraviť</button>
-    <button type="button" class="btn btn-danger" *ngIf="ockovanieForm.value.id !== null"
-            (click)="modal.close('delete')">Zmazať</button>
     <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">Zrušiť</button>
   </div>
 </ng-template>
