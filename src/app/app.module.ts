@@ -45,12 +45,7 @@ import {SortVakciny} from "./child-components/vakciny/child-components/vakcina-z
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule,
-    MatGridListModule,
-    MatProgressBarModule,
-    BrowserAnimationsModule,
-    MatCardModule,
-    MatSelectModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
