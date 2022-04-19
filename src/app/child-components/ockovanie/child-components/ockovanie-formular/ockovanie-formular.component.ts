@@ -40,6 +40,9 @@ export class OckovanieFormularComponent implements OnInit {
       ]),
       idVaccine: new FormControl(null, [
         Validators.required
+      ]),
+      dateOfVaccination: new FormControl(null,[
+        Validators.required
       ])
     });
   }
