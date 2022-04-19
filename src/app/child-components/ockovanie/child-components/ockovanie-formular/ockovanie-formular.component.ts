@@ -48,6 +48,7 @@ export class OckovanieFormularComponent implements OnInit {
     this.ockovanieForm.controls['id'].setValue(o.id);
     this.ockovanieForm.controls['idPerson'].setValue(o.idPerson);
     this.ockovanieForm.controls['idVaccine'].setValue(o.idVaccine);
+    this.ockovanieForm.controls['dateOfVaccination'].setValue(o.dateOfVaccination);
   }
 
   open() {
@@ -62,7 +63,8 @@ export class OckovanieFormularComponent implements OnInit {
     if (reason === "add") {
       this.createOckovanie.emit({
         idPerson: this.ockovanieForm.value.idPerson,
-        idVaccine: this.ockovanieForm.value.idVaccine
+        idVaccine: this.ockovanieForm.value.idVaccine,
+        dateOfVaccination: this.ockovanieForm.value.dateOfVaccination
       });
       this.toggleAlert(false);
     } else if (reason === "edit") {
