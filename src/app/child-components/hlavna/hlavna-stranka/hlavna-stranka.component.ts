@@ -16,7 +16,7 @@ export class HlavnaStrankaComponent implements OnInit {
   countries: any[];
   country:any;
   confirmed:any;
-  recovered:any;
+  active:any;
   death:any;
   myDate:any;
   selectedCountryData: CountryData;
@@ -26,22 +26,22 @@ export class HlavnaStrankaComponent implements OnInit {
 
   ngOnInit() {
     this.service.getCountry().subscribe(data=>{
-      console.log(data);
       this.countries=data;
+      this.country=data[0].Country;
       this.myDate=new Date();
+      this.getDetails();
     })
   }
   getCountry(c:any){
-    console.log(c);
     this.country=c;
+    this.getDetails();
   }
 
   getDetails(){
     this.service.getData(this.country).subscribe(data=>{
-      console.log(data);
       let index = data.length-1;
       this.confirmed=data[index].Confirmed;
-      this.recovered=data[index].Recovered;
+      this.active=data[index].Active;
       this.death=data[index].Deaths;
     });
   }

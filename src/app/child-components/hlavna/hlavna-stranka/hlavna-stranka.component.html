@@ -14,7 +14,6 @@
         {{c.Country}}
       </option>
     </select></div>
-    <div class="col-md-4"><button (click)="getDetails()" class="btn btn-primary">Zobraz</button></div>
   </div>
 </div>
 
@@ -25,7 +24,7 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body text-center text-white bg-success p-3">
-          <h2>{{country}} potvrdení</h2>
+          <h2>{{country}} potvrdení </h2>
           <h3>{{confirmed}}</h3>
         </div>
       </div>
@@ -34,8 +33,8 @@
     <div class="col-md-4">
       <div class="card">
         <div class="card-body text-center text-white bg-primary p-3">
-          <h2>{{country}} uzdravení</h2>
-          <h3>{{recovered}}</h3>
+          <h2>{{country}} aktívne prípady</h2>
+          <h3>{{active}}</h3>
         </div>
       </div>
     </div>
