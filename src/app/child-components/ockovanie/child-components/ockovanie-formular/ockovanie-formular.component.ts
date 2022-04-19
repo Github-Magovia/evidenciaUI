@@ -57,9 +57,6 @@ export class OckovanieFormularComponent implements OnInit {
     this.ockovanieForm.controls['id'].setValue(o.id);
     this.ockovanieForm.controls['idPerson'].setValue(o.idPerson);
     this.ockovanieForm.controls['idVaccine'].setValue(o.idVaccine);
-    this.ockovanieForm.controls['firstName'].setValue(o.firstName);
-    this.ockovanieForm.controls['lastName'].setValue(o.lastName);
-    this.ockovanieForm.controls['type'].setValue(o.type);
   }
 
   open() {

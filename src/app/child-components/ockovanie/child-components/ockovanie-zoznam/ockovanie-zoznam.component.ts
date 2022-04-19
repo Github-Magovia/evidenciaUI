@@ -52,6 +52,14 @@ export class OckovanieZoznamComponent implements OnInit {
       vType: new FormControl(null, [
         Validators.min(1),
         Validators.required
+      ]),
+      vFull: new FormControl(null,[
+        Validators.min(1),
+        Validators.required
+      ]),
+      vName: new FormControl(null,[
+        Validators.min(1),
+        Validators.required
       ])
     });
   }
