@@ -34,11 +34,11 @@ export class OckovanieZoznamComponent implements OnInit {
         Validators.required
       ]),
       vIdPerson: new FormControl(null, [
-        Validators.minLength(1),
+        Validators.min(1),
         Validators.required
       ]),
       vIdVaccination: new FormControl(null, [
-        Validators.minLength(1),
+        Validators.min(1),
         Validators.required
       ]),
       vFirst: new FormControl(null, [
@@ -109,13 +109,13 @@ export class OckovanieZoznamComponent implements OnInit {
       });
     }
     if(this.filtering.controls['vIdPerson'].valid){
-      filter = this.filtering.controls['vIdPerson'].value.toLocaleLowerCase();
+      filter = this.filtering.controls['vIdPerson'].value.toString();
       filtred = filtred.filter((vaccination: Ockovanie) => {
         return vaccination.idPerson.toString(10).match(filter);
       });
     }
     if(this.filtering.controls['vIdVaccination'].valid){
-      filter = this.filtering.controls['vIdVaccination'].value.toLocaleLowerCase();
+      filter = this.filtering.controls['vIdVaccination'].value.toString();
       filtred = filtred.filter((vaccination: Ockovanie) => {
         return vaccination.idVaccine.toString(10).match(filter);
       });

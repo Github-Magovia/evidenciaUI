@@ -23,6 +23,18 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
+            <label for="filter-vIdPerson" class="col-form-label">ID osoby: </label>
+            <div>
+              <input id="filter-vIdPerson" type="number" min="0" class="form-control" formControlName="vIdPerson"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-vIdVaccination" class="col-form-label">ID vakcíny: </label>
+            <div>
+              <input id="filter-vIdVaccination" type="number" min="0" class="form-control" formControlName="vIdVaccination"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
             <label for="filter-first" class="col-form-label">Meno: </label>
             <div>
               <input id="filter-first" type="text" class="form-control" formControlName="vFirst"  (input)="refreshTable()">
