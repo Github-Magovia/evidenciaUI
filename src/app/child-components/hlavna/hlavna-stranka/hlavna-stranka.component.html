@@ -1,150 +1,62 @@
-  <h1>Momentálne sa pracuje na hlavnej stránke</h1>
-  <div class="progress" style="height: 20px">
-    <div
-      class="progress-bar"
-      role="progressbar"
-      style="width: 25%"
-      aria-valuenow="25"
-      aria-valuemin="0"
-      aria-valuemax="100"
-    >
-      25%
-    </div>
+<div class="container-fluid bg-info p-1 text-white">
+  <br>
+  <h1 class="text-center">COVID-19 štatistiky</h1>
+  <h4 class="text-center">Dátum: {{myDate | date:'d/MMM/YYYY, hh:mm:ss'}} </h4>
+</div>
+
+<div class="bg-custom"></div>
+
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-4"><h2 class="bi-text-right">Krajina: </h2></div>
+    <div class="col-md-4"><select (change)="getCountry($event.target.value)" class="form-control">
+      <option *ngFor="let c of countries">
+        {{c.Country}}
+      </option>
+    </select></div>
+    <div class="col-md-4"><button (click)="getDetails()" class="btn btn-primary">Submit</button></div>
   </div>
+</div>
 
 
-<mat-grid-list cols="2" rowHeight="1:1">
-  <mat-grid-tile>
-    <div>
-      <div class="same-row">
-        <mat-card class="covid-card">
-          <mat-card-header>
-            <div mat-card-avatar>
-              <img  alt="zemegula" src="assets/worldwide.png">
-            </div>
-            <mat-card-title>Celosvetovo</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <table>
-              <tr>
-                <td>
-                  Znovunakazení
-                </td>
-                <td>
-                  {{summaryData?.Global?.NewRecovered | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Celkový počet znovunakazených
-               </td>
-                <td>
-                  {{summaryData?.Global?.TotalRecovered | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Novopotvrdení
-                </td>
-                <td>
-                  {{summaryData?.Global?.NewConfirmed | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Celkový počet potvrdených
-                </td>
-                <td>
-                  {{summaryData?.Global?.TotalConfirmed | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Nové úmrtia
-                </td>
-                <td>
-                  {{summaryData?.Global?.NewDeaths | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Celkový počet úmrtí
-                </td>
-                <td>
-                  {{summaryData?.Global?.TotalDeaths | number}}
-                </td>
-              </tr>
-            </table>
-          </mat-card-content>
-        </mat-card>
-      </div>
 
-      <div class="same-row">
-        <mat-card class="covid-card">
-          <mat-card-header>
-            <div mat-card-avatar>
-              <img alt="vlajka Slovenska" src="assets/slovakia.png">
-            </div>
-            <mat-card-title>Slovensko</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <table>
-              <tr>
-                <td>
-                  Znovunakazení
-                </td>
-                <td>
-                  {{slovakiaData?.NewRecovered | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Celkový počet znovunakazených
-                </td>
-                <td>
-                  {{slovakiaData?.TotalRecovered | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Novopotvrdení
-                </td>
-                <td>
-                  {{slovakiaData?.NewConfirmed | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Celkový počet potvrdených
-                </td>
-                <td>
-                  {{slovakiaData?.TotalConfirmed | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Nové úmrtia
-                </td>
-                <td>
-                  {{slovakiaData?.NewDeaths | number}}
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Celkový počet úmrtí
-                </td>
-                <td>
-                  {{slovakiaData?.TotalDeaths | number}}
-                </td>
-              </tr>
-            </table>
-          </mat-card-content>
-        </mat-card>
-        <div class="same-row" style="font-weight: bold;">
-          Dáta ku dňu: {{currentDate}}
+<div class="container p-3">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center text-white bg-success p-3">
+          <h2>{{country}} potvrdení</h2>
+          <h3>{{confirmed}}</h3>
         </div>
       </div>
     </div>
-  </mat-grid-tile>
-  <mat-grid-tile>Očkovacia lotéria (tabuľka random vylosovaní zaočkovaní)</mat-grid-tile>
-</mat-grid-list>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center text-white bg-primary p-3">
+          <h2>{{country}} uzdravení</h2>
+          <h3>{{recovered}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-body text-center text-white bg-danger p-3">
+          <h2>{{country}} mŕtvi</h2>
+          <h3>{{death}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+<!--  //Ockovacia loteria-->
+</div>
+
+
+
+
+
+
