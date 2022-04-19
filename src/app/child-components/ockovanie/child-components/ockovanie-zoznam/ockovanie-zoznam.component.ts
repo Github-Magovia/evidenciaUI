@@ -127,13 +127,13 @@ export class OckovanieZoznamComponent implements OnInit {
       });
     }
     if(this.filtering.controls['vLast'].valid) {
-      filter = this.filtering.controls['vFull'].value.toString();
+      filter = this.filtering.controls['vLast'].value.toString();
       filtred = filtred.filter((vaccination: Ockovanie) => {
         return vaccination.lastName.toLocaleLowerCase().match(filter);
       });
     }
     if(this.filtering.controls['vType'].valid) {
-      filter = this.filtering.controls['vFull'].value.toString();
+      filter = this.filtering.controls['vType'].value.toString();
       filtred = filtred.filter((vaccination: Ockovanie) => {
         return vaccination.type.toLocaleLowerCase().match(filter);
       });

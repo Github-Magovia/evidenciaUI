@@ -23,9 +23,15 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
-            <label for="filter-name" class="col-form-label">Názov: </label>
+            <label for="filter-first" class="col-form-label">Meno: </label>
             <div>
-              <input id="filter-name" type="text" class="form-control" formControlName="vName"  (input)="refreshTable()">
+              <input id="filter-first" type="text" class="form-control" formControlName="vFirst"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-last" class="col-form-label">Priezvisko: </label>
+            <div>
+              <input id="filter-last" type="text" class="form-control" formControlName="vLast"  (input)="refreshTable()">
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
