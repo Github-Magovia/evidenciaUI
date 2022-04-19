@@ -13,17 +13,16 @@
       </div>
       <!-- Osoba,select -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="name">Vyber osobu: </label>
-        <select type="text" formControlName="name" class="form-control" id="name">
+        <label class="form-label" for="idPerson">Vyber osobu: </label>
+        <select type="text" formControlName="idPerson" class="form-control" id="idPerson">
+          <option *ngFor="let osoba of osoby" value="{{osoba.id}}">({{osoba.id}}) {{osoba.firstName}} {{osoba.lastName}}</option>
         </select>
       </div>
       <!-- Vakcina,select -->
       <div class="form-outline mb-4">
-        <label class="form-label" for="type">Vyber vakcínu: </label>
-        <select id="type" class="form-select" formControlName="type">
-          <option value="mRNA">mRNA vakcína</option>
-          <option value="Vector">Vektorová vakcína</option>
-          <option value="Other">Iné</option>
+        <label class="form-label" for="idVaccine">Vyber vakcínu: </label>
+        <select id="idVaccine" class="form-select" formControlName="idVaccine">
+          <option *ngFor="let vakcina of vakciny" value="{{vakcina.id}}">({{vakcina.id}}) {{vakcina.name}}</option>
         </select>
       </div>
     </form>

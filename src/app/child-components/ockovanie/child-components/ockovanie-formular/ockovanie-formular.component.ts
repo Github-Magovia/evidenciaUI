@@ -2,6 +2,8 @@ import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} f
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Ockovanie} from "../../../../../models/ockovanie.model";
+import {Osoba} from "../../../../../models/osoba.model";
+import {Vakcina} from "../../../../../models/vakcina.model";
 
 @Component({
   selector: 'app-ockovanie-formular',
@@ -9,11 +11,11 @@ import {Ockovanie} from "../../../../../models/ockovanie.model";
   styleUrls: ['./ockovanie-formular.component.css']
 })
 export class OckovanieFormularComponent implements OnInit {
-
+  @Input() osoby: Osoba[];
+  @Input() vakciny: Vakcina[];
   ockovanieForm: FormGroup;
   @ViewChild('content', { static: true }) modal: ElementRef;
   showAlert: boolean;
-
   @Input()
   set ockovanie(data: Ockovanie) {
     if (data) { this.naplnFormular(data); }
@@ -72,10 +74,7 @@ export class OckovanieFormularComponent implements OnInit {
     if (reason === "add") {
       this.createOckovanie.emit({
         idPerson: this.ockovanieForm.value.idPerson,
-        idVaccine: this.ockovanieForm.value.idVaccine,
-        firstName: this.ockovanieForm.value.firstName,
-        lastName: this.ockovanieForm.value.lastName,
-        type: this.ockovanieForm.value.type
+        idVaccine: this.ockovanieForm.value.idVaccine
       });
       this.toggleAlert(false);
     } else if (reason === "edit") {

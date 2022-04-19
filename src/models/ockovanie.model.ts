@@ -2,9 +2,9 @@ export class Ockovanie{
   id?: number;
   idPerson: number;
   idVaccine: number;
-  firstName: String;
-  lastName: String;
-  type: String;
+  firstName?: String;
+  lastName?: String;
+  type?: String;
 
 
   constructor(id: number, idPerson: number, idVaccine: number, firstName: String, lastName: String, type: String) {

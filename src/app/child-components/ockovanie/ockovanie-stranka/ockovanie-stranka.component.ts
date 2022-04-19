@@ -3,6 +3,10 @@ import {Subscription} from "rxjs";
 import {Ockovanie} from "../../../../models/ockovanie.model";
 import {OckovanieFormularComponent} from "../child-components/ockovanie-formular/ockovanie-formular.component";
 import {OckovanieService} from "../services/ockovanie.service";
+import {Osoba} from "../../../../models/osoba.model";
+import {Vakcina} from "../../../../models/vakcina.model";
+import {VakcinaService} from "../../vakciny/services/vakcina.service";
+import {OsobyService} from "../../osoby/services/osoby.service";
 
 @Component({
   selector: 'app-ockovanie-stranka',
@@ -13,12 +17,14 @@ export class OckovanieStrankaComponent implements OnInit {
 
   isLoaded: boolean = false;
   ockovania: Ockovanie[] = [];
+  osoby: Osoba[] = [];
+  vakciny: Vakcina[] = [];
   private sub: Subscription = new Subscription();
   ockovanie?: Ockovanie;
   @ViewChild(OckovanieFormularComponent) formular: OckovanieFormularComponent;
 
 
-  constructor(private ockovanieSrv: OckovanieService) { }
+  constructor(private ockovanieSrv: OckovanieService, private vakcinySrv: VakcinaService, private osobySrv: OsobyService) { }
 
   refreshOckovanie(): void {
     this.isLoaded = false;
