@@ -25,6 +25,11 @@
           <option *ngFor="let vakcina of vakciny" value="{{vakcina.id}}">({{vakcina.id}}) {{vakcina.name}}</option>
         </select>
       </div>
+      <!-- datum,select -->
+      <div class="form-outline datepicker">
+        <label class="form-label" for="datNar">Dátum narodenia: </label>
+        <input type="datetime" formControlName="dateOfVaccination" class="form-control" id="datNar">
+      </div>
     </form>
   </div>
   <div class="modal-footer bg-light">
