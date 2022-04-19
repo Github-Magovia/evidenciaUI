@@ -41,12 +41,6 @@
               <input id="filter-type" type="text" class="form-control" formControlName="vType"  (input)="refreshTable()">
             </div>
           </div>
-          <div class="col-sm-12 col-md-4">
-            <label for="filter-full" class="col-form-label">Počet na plné zaočkovanie: </label>
-            <div>
-              <input id="filter-full" type="number" min="1" class="form-control" formControlName="vFull"  (input)="refreshTable()">
-            </div>
-          </div>
           <div class="col-12 d-flex justify-content-end">
             <button class="btn btn-primary" (click)="filtering.reset(); refreshTable();">Resetovať filtre</button>
           </div>
