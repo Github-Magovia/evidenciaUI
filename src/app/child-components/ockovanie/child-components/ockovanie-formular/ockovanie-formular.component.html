@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header bg-light">
-    <h4 class="modal-title" id="modal-basic-title">Pridať vakcináciu</h4>
+    <h4 class="modal-title" id="modal-basic-title">Pridať očkovanie</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.close('cancel')"></button>
   </div>
   <div class="modal-body">
@@ -53,7 +53,7 @@
   </div>
 </ng-template>
 
-<ngb-alert class="alert alert-warning" *ngIf="showAlert" (closed)="toggleAlert(false)">Modifikácia vakcinácie bola zrušená.</ngb-alert>
-<button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open()">Pridaj vakcináciu</button>
+<ngb-alert class="alert alert-warning" *ngIf="showAlert" (closed)="toggleAlert(false)">Modifikácia očkovania bola zrušená.</ngb-alert>
+<button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open()">Pridaj očkovanie</button>
 
 <hr>
