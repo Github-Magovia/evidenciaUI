@@ -14,7 +14,7 @@
       <!-- Osoba,select -->
       <div class="form-outline mb-4">
         <label class="form-label" for="idPerson">Vyber osobu: </label>
-        <select type="text" formControlName="idPerson" class="form-control" id="idPerson">
+        <select  formControlName="idPerson" class="form-control" id="idPerson">
           <option *ngFor="let osoba of osoby" value="{{osoba.id}}">({{osoba.id}}) {{osoba.firstName}} {{osoba.lastName}}</option>
         </select>
       </div>
