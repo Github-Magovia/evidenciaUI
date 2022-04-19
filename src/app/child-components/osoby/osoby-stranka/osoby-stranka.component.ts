@@ -12,6 +12,7 @@ import {OsobyFormularComponent} from "../child-components/osoby-formular/osoby-f
 export class OsobyStrankaComponent implements OnInit, OnDestroy {
   osoby: Osoba[] = [];
   private sub: Subscription = new Subscription();
+  isLoaded: boolean = false;
   osoba?: Osoba;
   @ViewChild(OsobyFormularComponent) formular: OsobyFormularComponent;
 
@@ -19,8 +20,10 @@ export class OsobyStrankaComponent implements OnInit, OnDestroy {
   constructor(private osobySrv: OsobyService) { }
 
   refreshOsoby(): void {
+    this.isLoaded = false;
     this.sub.add(this.osobySrv.getPeople().subscribe(data => {
       this.osoby = data;
+      this.isLoaded = true;
     }));
   }
 

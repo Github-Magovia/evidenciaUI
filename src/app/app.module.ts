@@ -18,11 +18,8 @@ import {HttpClientModule} from "@angular/common/http";
 import { VakcinyStrankaComponent } from './child-components/vakciny/vakciny-stranka/vakciny-stranka.component';
 import { VakcinaFormularComponent } from './child-components/vakciny/child-components/vakcina-formular/vakcina-formular.component';
 import { VakcinaZoznamComponent } from './child-components/vakciny/child-components/vakcina-zoznam/vakcina-zoznam.component';
-import {MatGridListModule} from "@angular/material/grid-list";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatCardModule} from "@angular/material/card";
-import {MatSelectModule} from "@angular/material/select";
+import {SortOsoby} from "./child-components/osoby/child-components/osoby-zoznam/sort-osoby";
+import {SortVakciny} from "./child-components/vakciny/child-components/vakcina-zoznam/sort-vakciny";
 
 @NgModule({
   declarations: [
@@ -35,7 +32,9 @@ import {MatSelectModule} from "@angular/material/select";
     FooterBarComponent,
     VakcinyStrankaComponent,
     VakcinaFormularComponent,
-    VakcinaZoznamComponent
+    VakcinaZoznamComponent,
+    SortOsoby,
+    SortVakciny
   ],
   imports: [
     BrowserModule,

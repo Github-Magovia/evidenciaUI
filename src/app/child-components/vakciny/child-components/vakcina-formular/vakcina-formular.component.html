@@ -1,53 +1,119 @@
 <ng-template #content let-modal>
-  <div class="modal-header bg-light">
-    <h4 class="modal-title" id="modal-basic-title">Pridať vakcínu</h4>
-    <button type="button" class="btn-close" aria-label="Close" (click)="modal.close('cancel')"></button>
+  <div *ngIf="isEditing">
+    <div class="modal-header bg-light">
+      <h4 class="modal-title" id="modal-basic-title">Modifikácia vakcíny</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.close('cancel')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="vakcinaForm">
+        <!-- ID input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="id">ID: </label>
+          <input type="number" id="id" readonly formControlName="id" class="form-control" />
+          <small class="small tooltip">ID bude priradené automaticky.</small>
+        </div>
+        <!-- Názov vakcíny input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="name">Nazov vakciny: </label>
+          <input type="text" formControlName="name" class="form-control" id="name">
+        </div>
+        <!-- Typ vakcíny input -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="type">Typ vakcíny: </label>
+          <select id="type" class="form-select" formControlName="type">
+            <option value="mRNA">mRNA vakcína</option>
+            <option value="Vector">Vektorová vakcína</option>
+            <option value="Other">Iné</option>
+          </select>
+        </div>
+        <!-- Množstvo vakcín input -->
+        <div class="form-outline">
+          <label for="amountOfVaccines" class="form-label">Množstvo vakcín: </label>
+          <input type="number" formControlName="amountOfVaccines" min="0" class="form-control" id="amountOfVaccines">
+        </div>
+        <br>
+        <!-- Množstvo vakcín plne zaockovanie input -->
+        <div class="form-outline">
+          <label for="amountToCompleteVaccination" class="form-label">Množstvo vakcín potrebné na plné zaočkovanie: </label>
+          <input type="number" min="1" formControlName="amountToCompleteVaccination" class="form-control" id="amountToCompleteVaccination">
+        </div>
+        <br>
+        <!-- Počet dni do zaciatku ucinnosti vakciny input -->
+        <div class="form-outline">
+          <label for="daysToFullVaccination" class="form-label">Počet dní do začiatku plnej účinnosti: </label>
+          <input type="number" min="0" formControlName="daysToFullVaccination" class="form-control" id="daysToFullVaccination">
+        </div>
+        <br>
+        <!-- Trvanie vakciny input -->
+        <div class="form-outline">
+          <label for="durationOfVaccine" class="form-label">Trvanie učinnosti vakcíny: </label>
+          <input type="number" min="1" formControlName="durationOfVaccine" class="form-control" id="durationOfVaccine">
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer bg-light">
+      <button type="button" class="btn btn-success"
+              *ngIf="vakcinaForm.value.id === null"
+              (click)="modal.close('add')"
+              [attr.disabled]="vakcinaForm.valid? null : true">Pridaj</button>
+      <button type="button" class="btn btn-primary"
+              *ngIf="vakcinaForm.value.id !== null"
+              (click)="modal.close('edit')"
+              [attr.disabled]="vakcinaForm.valid? null : true">Upraviť</button>
+      <button type="button" class="btn btn-danger" *ngIf="vakcinaForm.value.id !== null"
+              (click)="modal.close('delete')">Zmazať</button>
+      <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">Zrušiť</button>
+    </div>
   </div>
-  <div class="modal-body">
-    <form [formGroup]="vakcinaForm">
-      <!-- ID input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="id">ID: </label>
-        <input type="number" id="id" readonly formControlName="id" class="form-control" />
-        <small class="small tooltip">ID bude priradené automaticky.</small>
+  <div *ngIf="!isEditing">
+    <div class="modal-header bg-light">
+      <h4 class="modal-title" id="modal-info-title">Prehľad vakcíny</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.close(' ')"></button>
+    </div>
+    <div class="modal-body">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-12 col-lg-2">
+            <p class="fw-bold">ID</p>
+            <p>{{this.vakcinaForm.controls['id'].value}}</p>
+          </div>
+          <div class="col-sm-12 col-lg-3">
+            <p class="fw-bold">Nazov </p>
+            <p>{{this.vakcinaForm.controls['name'].value}}</p>
+          </div>
+          <div class="col-sm-12 col-lg-3">
+            <p class="fw-bold">Typ </p>
+            <p>{{this.vakcinaForm.controls['type'].value}}</p>
+          </div>
+          <div class="col-sm-12 col-lg-4">
+            <p class="fw-bold">Poćet vakcín </p>
+            <p>{{this.vakcinaForm.controls['amountOfVaccines'].value}}</p>
+          </div>
+          <div class="col-sm-12 col-lg-6">
+            <p class="fw-bold">Počet na úplne zaočkovanie </p>
+            <p>{{this.vakcinaForm.controls['amountToCompleteVaccination'].value}}</p>
+          </div>
+          <div class="col-12 col-lg-6">
+            <p class="fw-bold">Trvanie vakcíny (v dňoch) </p>
+            <p>{{this.vakcinaForm.controls['durationOfVaccine'].value}}</p>
+          </div>
+          <div class="col-12">
+            <p class="fw-bold">Počet dní do plnej účinnosti </p>
+            <p>{{this.vakcinaForm.controls['daysToFullVaccination'].value}}</p>
+          </div>
+        </div>
       </div>
-      <!-- Názov vakcíny input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="nazov">Názov vakcíny: </label>
-        <input type="text" id="nazov" formControlName="vaccineName" class="form-control" />
-      </div>
-      <!-- Typ vakcíny input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="typ">Typ vakcíny: </label>
-        <select id="typ" class="form-select" formControlName="type">
-          <option value="mRNA">mRNA vakcína</option>
-          <option value="Vector">Vektorová vakcína</option>
-          <option value="Other">Iné</option>
-        </select>
-      </div>
-      <!-- Množstvo vakcín input -->
-      <div class="form-outline datepicker">
-        <label for="amountVaccine" class="form-label">Množstvo vakcín: </label>
-        <input type="text" formControlName="amountVaccine" class="form-control" id="amountVaccine">
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer bg-light">
-    <button type="button" class="btn btn-success"
-            *ngIf="vakcinaForm.value.id === null"
-            (click)="modal.close('add')"
-            [attr.disabled]="vakcinaForm.valid? null : true">Pridaj</button>
-    <button type="button" class="btn btn-info"
-            *ngIf="vakcinaForm.value.id !== null"
-            (click)="modal.close('edit')"
-            [attr.disabled]="vakcinaForm.valid? null : true">Upraviť</button>
-    <button type="button" class="btn btn-danger" *ngIf="vakcinaForm.value.id !== null"
-            (click)="modal.close('delete')">Zmazať</button>
-    <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">Zrušiť</button>
+    </div>
+    <div class="modal-footer bg-light">
+      <button type="button" class="btn btn-primary text-white"
+              *ngIf="vakcinaForm.value.id !== null"
+              (click)="toggleEditing(true)">Modifikovať</button>
+      <button type="button" class="btn btn-dark" (click)="modal.close(' ')">Zavrieť</button>
+    </div>
   </div>
 </ng-template>
 
 <ngb-alert class="alert alert-warning" *ngIf="showAlert" (closed)="toggleAlert(false)">Modifikácia vakcíny bola zrušená.</ngb-alert>
-<button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open()">Pridaj vakcínu</button>
+<button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open(); toggleEditing(true)">Pridaj vakcínu</button>
 
 <hr>

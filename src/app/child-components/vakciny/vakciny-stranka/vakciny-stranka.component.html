@@ -1,5 +1,5 @@
 <app-vakcina-formular [vakcina]="vakcina"
-                    (createVakcina)="pridajVakcinu($event)"
-                    (editVakcina)="upravVakcinu($event)"
-                    (deleteVakcina)="zmazVakcinu($event)"></app-vakcina-formular>
-<app-vakcina-zoznam [vakciny]="vakciny" (editVakcina)="nastavVakcinu($event)"></app-vakcina-zoznam>
+                      (createVakcina)="pridajVakcinu($event)"
+                      (editVakcina)="upravVakcinu($event)"
+                      (deleteVakcina)="zmazVakcinu($event)"></app-vakcina-formular>
+<app-vakcina-zoznam [vakciny]="vakciny" [isLoaded]="isLoaded" (editVakcina)="nastavVakcinu($event)"></app-vakcina-zoznam>
