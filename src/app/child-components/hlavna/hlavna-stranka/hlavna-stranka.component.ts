@@ -21,6 +21,8 @@ export class HlavnaStrankaComponent implements OnInit {
   myDate:any;
   selectedCountryData: CountryData;
   currentDate: string;
+  firstName:any;
+  lastName:any;
 
   constructor(private service: DataService) { }
 
