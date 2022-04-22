@@ -28,6 +28,8 @@ import {OckovanieStrankaComponent} from "./child-components/ockovanie/ockovanie-
 import {
   OckovanieFormularComponent
 } from "./child-components/ockovanie/child-components/ockovanie-formular/ockovanie-formular.component";
+import { TerminyStrankaComponent } from './child-components/terminy/terminy-stranka/terminy-stranka.component';
+import { TerminyFormularComponent } from './child-components/terminy/child-components/terminy-formular/terminy-formular.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,9 @@ import {
     SortOckovanie,
     OckovanieZoznamComponent,
     OckovanieStrankaComponent,
-    OckovanieFormularComponent
+    OckovanieFormularComponent,
+    TerminyStrankaComponent,
+    TerminyFormularComponent
   ],
   imports: [
     BrowserModule,

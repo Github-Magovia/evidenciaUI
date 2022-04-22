@@ -1,0 +1,80 @@
+<br>
+<div class="container">
+<form [formGroup]="terminyForm">
+  <div class="form-outline mb-4">
+    <label class="form-label">Vyberte miesto očkovania: </label>
+    <select class="form-select">
+      <option>Očkovacie centrum Zvolen</option>
+      <option>Očkovacie centrum Bratislava</option>
+      <option>Očkovacie centrum Prešov</option>
+      <option>Očkovacie centrum Košice</option>
+      <option>Očkovacie centrum Žilina</option>
+      <option>Očkovacie centrum Trenčín</option>
+    </select>
+  </div>
+  <div class="form-outline datepicker">
+    <label for="datNar" class="form-label">Vyberte dátum očkovania: </label>
+    <input type="date" formControlName="dateOfBirth" class="form-control" id="datNar">
+  </div>
+</form>
+ <br>
+  <div class="container">
+  <div class="row">
+  <div class="col-2" *ngIf="shouldDisplayDate">
+    <button class="btn btn-info">10:00</button></div>
+    <div class="col-2" *ngIf="shouldDisplayDate">
+      <button class="btn btn-info">10:30</button></div>
+    <div class="col-2" *ngIf="shouldDisplayDate">
+      <button class="btn btn-info">11:00</button></div>
+    <div class="col-2" *ngIf="shouldDisplayDate">
+      <button class="btn btn-info">11:30</button></div>
+    <div class="col-2" *ngIf="shouldDisplayDate">
+      <button class="btn btn-info">12:00</button></div>
+    <div class="col-2" *ngIf="shouldDisplayDate">
+      <button class="btn btn-info">12:30</button></div>
+  </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">13:00</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">13:30</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">14:00</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">14:30</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">15:00</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">15:30</button></div>
+    </div>
+  </div>
+  <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">16:00</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">16:30</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">17:00</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">17:30</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">18:00</button></div>
+      <div class="col-2" *ngIf="shouldDisplayDate">
+        <button class="btn btn-info">18:30</button></div>
+    </div>
+  </div>
+<br>
+</div>
+<div class="modal-footer bg-light">
+  <button type="button" class="btn btn-success"
+         >Rezervovať</button>
+  <button type="button" class="btn btn-primary"
+         >Upraviť</button>
+  <button type="button" class="btn btn-danger" >Zmazať</button>
+  <button type="button" class="btn btn-dark">Zrušiť</button>
+</div>
