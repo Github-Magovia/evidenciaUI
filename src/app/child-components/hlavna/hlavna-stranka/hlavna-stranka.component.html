@@ -71,12 +71,12 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let lottery of lotterySlice" style="cursor: pointer">
-        <th scope="row">{{ lottery.id }}</th>
-        <td>{{lottery.id}}</td>
-        <td>{{lottery.firstName}}</td>
-        <td>{{lottery.lastName}}</td>
-        <td>{{lottery.amount}}</td>
+      <tr *ngFor="let winner of lotterySlice" style="cursor: pointer">
+        <th scope="row">{{ winner.id }}</th>
+        <td>{{winner.id}}</td>
+        <td>{{winner.firstName}}</td>
+        <td>{{winner.lastName}}</td>
+        <td>{{winner.amount}}</td>
       </tr>
       </tbody>
     </table>
