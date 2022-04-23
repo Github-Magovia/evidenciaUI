@@ -48,6 +48,7 @@ export class HlavnaStrankaComponent implements OnInit {
     })
     this.lotterySrv.getWinners().subscribe(data=>{
       this.lottery=data;
+      this.refreshTable();
     })
   }
   getCountry(c:any){
