@@ -6,7 +6,6 @@ import {Lottery} from "../../../../../models/lottery.model";
 @Injectable({
   providedIn: 'root'
 })
-
 export class LotteryService {
 
   private apiUrl = 'http://localhost:8080/api/lottery';

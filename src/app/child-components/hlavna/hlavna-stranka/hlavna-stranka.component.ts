@@ -5,6 +5,7 @@ import {CountryData} from "../../../../models/model";
 import {Lottery} from "../../../../models/lottery.model";
 import {FormGroup} from "@angular/forms";
 import {SortEvent, SortLottery} from "./sort-lottery";
+import {LotteryService} from "./services/lottery.service";
 
 
 const compare = (v1: String | number, v2: String | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
@@ -30,15 +31,13 @@ export class HlavnaStrankaComponent implements OnInit {
   pageSize: number = 10;
   collectionSize: number;
   page: number = 1;
-  @Input() isLoaded: boolean;
+  isLoaded: boolean;
   @Input() lottery: Lottery[] = [];
   lotterySlice: Lottery[] = [];
   @ViewChildren(SortLottery) headers: QueryList<SortLottery>;
 
+  constructor(private service: DataService, private lotterySrv: LotteryService) { }
 
-
-
-  constructor(private service: DataService) { }
 
   ngOnInit() {
     this.service.getCountry().subscribe(data=>{
@@ -46,6 +45,12 @@ export class HlavnaStrankaComponent implements OnInit {
       this.country=data[0].Country;
       this.myDate=new Date();
       this.getDetails();
+    })
+    this.lotterySrv.getWinners().subscribe(data=>{
+      this.lottery=data;
+      this.lottery=data;
+      this.lottery=data;
+      this.lottery=data;
     })
   }
   getCountry(c:any){
