@@ -57,7 +57,52 @@
  <!-- <h4 class="text-center">Dátum: {{myDate | date:'d/MMM/YYYY, hh:mm:ss'}} </h4>-->
 </div>
 <div class="bg-custom2"></div>
+<!-- SEARCH BUTTON -->
+<div class="m-2">
+  <button type="button" class="btn btn-primary"
+          (click)="collapse.toggle(); filtering.reset(); refreshTable();"
+          [attr.aria-expanded]="!isCollapsed"
+          aria-controls="collapseExample">
+    Vyhladávanie
+  </button>
+</div>
 
+<!-- VYHLADAVACIE POLIA - COLLAPSIBLE -->
+<div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+  <form [formGroup]="filtering">
+    <div class="container-fluid mb-3">
+      <div class="row">
+        <div class="col-sm-12 col-md-4">
+          <label for="filter-id" class="col-form-label">ID:</label>
+          <div>
+            <input id="filter-id" type="number" min="0" class="form-control" formControlName="id"  (input)="refreshTable()">
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <label for="filter-firstName" class="col-form-label">Meno:</label>
+          <div>
+            <input id="filter-firstName" type="text" min="0" class="form-control" formControlName="firstName"  (input)="refreshTable()">
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <label for="filter-lastName" class="col-form-label">Priezvisko:</label>
+          <div>
+            <input id="filter-lastName" type="text" min="0" class="form-control" formControlName="lastName"  (input)="refreshTable()">
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+          <label for="filter-amount" class="col-form-label">Výhra:</label>
+          <div>
+            <input id="filter-amount" type="number" class="form-control" formControlName="amount"  (input)="refreshTable()">
+          </div>
+        </div>
+        <div class="col-12 d-flex justify-content-end">
+          <button class="btn btn-primary" (click)="filtering.reset(); refreshTable();">Resetovať filtre</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
 <!-- DATATABLE -->
 <form>
   <div class="table-responsive scroll-table">

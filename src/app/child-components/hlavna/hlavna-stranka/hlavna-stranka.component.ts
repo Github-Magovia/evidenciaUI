@@ -3,7 +3,7 @@ import {DatePipe} from "@angular/common";
 import {DataService} from "../../../data.service";
 import {CountryData} from "../../../../models/model";
 import {Lottery} from "../../../../models/lottery.model";
-import {FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SortEvent, SortLottery} from "./sort-lottery";
 import {LotteryService} from "./services/lottery.service";
 
@@ -34,9 +34,31 @@ export class HlavnaStrankaComponent implements OnInit {
   isLoaded: boolean;
   lottery: Lottery[] = [];
   lotterySlice: Lottery[] = [];
+  isCollapsed: boolean = true;
   @ViewChildren(SortLottery) headers: QueryList<SortLottery>;
 
-  constructor(private service: DataService, private lotterySrv: LotteryService) { }
+  constructor(private service: DataService, private lotterySrv: LotteryService) {
+    {
+      this.filtering = new FormGroup({
+        id: new FormControl(null, [
+          Validators.min(0),
+          Validators.required
+        ]),
+        firstName: new FormControl(null, [
+          Validators.min(1),
+          Validators.required
+        ]),
+        lastName: new FormControl(null, [
+          Validators.min(1),
+          Validators.required
+        ]),
+        amount: new FormControl(null, [
+          Validators.min(0),
+          Validators.required
+        ])
+      });
+    }
+  }
 
 
   ngOnInit() {
@@ -64,6 +86,7 @@ export class HlavnaStrankaComponent implements OnInit {
       this.death=data[index].Deaths;
     });
   }
+
   private filterOut(): Lottery[] {
     let filter: any;
     let filtred: Lottery[] = this.lottery;
