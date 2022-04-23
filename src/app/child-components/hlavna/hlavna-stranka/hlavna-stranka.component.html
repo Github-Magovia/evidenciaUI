@@ -58,35 +58,43 @@
 </div>
 <div class="bg-custom2"></div>
 
-<div class="container p-3">
-  <div class="card-body text-center bg-gradient p-3">
-    <h2 class="text-success">Výhercovia</h2>
-    <table class="table table-hover">
+<!-- DATATABLE -->
+<form>
+  <div class="table-responsive scroll-table">
+    <table class="table table-striped table-hover">
       <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">Meno</th>
-        <th scope="col">Priezvisko</th>
+        <th scope="col" sortableLottery="id" (sort)="onSort($event)">ID</th>
+        <th scope="col" sortableLottery="firstName" (sort)="onSort($event)">Meno</th>
+        <th scope="col" sortableLottery="lastName" (sort)="onSort($event)">Priezvisko</th>
+        <th scope="col" sortableLottery="amount" (sort)="onSort($event)">Výhra</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>{{firstName}}</td>
-        <td>{{lastName}}</td>
+      <tr *ngFor="let lottery of lotterySlice" style="cursor: pointer">
+        <th scope="row">{{ lottery.id }}</th>
+        <td>{{lottery.id}}</td>
+        <td>{{lottery.firstName}}</td>
+        <td>{{lottery.lastName}}</td>
+        <td>{{lottery.amount}}</td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-      </tr>
-
       </tbody>
     </table>
   </div>
+</form>
+<!-- PAGINATION -->
+<div class="p-2">
+  <ngb-pagination class="d-flex col-12 justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshTable()">
+  </ngb-pagination>
+
+  <div class="d-flex col-12 justify-content-center">
+    <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshTable()">
+      <option [ngValue]="5">5 položiek na stranu</option>
+      <option [ngValue]="10">10 položiek na stranu</option>
+      <option [ngValue]="25">25 položiek na stranu</option>
+      <option [ngValue]="50">50 položiek na stranu</option>
+      <option [ngValue]="100">100 položiek na stranu</option>
+    </select>
+  </div>
 </div>
+
