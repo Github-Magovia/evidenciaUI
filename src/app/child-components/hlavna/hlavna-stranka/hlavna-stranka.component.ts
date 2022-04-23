@@ -32,7 +32,7 @@ export class HlavnaStrankaComponent implements OnInit {
   collectionSize: number;
   page: number = 1;
   isLoaded: boolean;
-  @Input() lottery: Lottery[] = [];
+  lottery: Lottery[] = [];
   lotterySlice: Lottery[] = [];
   @ViewChildren(SortLottery) headers: QueryList<SortLottery>;
 
