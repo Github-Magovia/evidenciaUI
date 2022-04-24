@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {DataService} from "../../../data.service";
 import {CountryData} from "../../../../models/model";
@@ -45,11 +45,11 @@ export class HlavnaStrankaComponent implements OnInit {
           Validators.required
         ]),
         firstName: new FormControl(null, [
-          Validators.min(1),
+          Validators.minLength(1),
           Validators.required
         ]),
         lastName: new FormControl(null, [
-          Validators.min(1),
+          Validators.minLength(1),
           Validators.required
         ]),
         amount: new FormControl(null, [
