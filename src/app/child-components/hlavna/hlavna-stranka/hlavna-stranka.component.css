@@ -2,5 +2,9 @@
   background: url("src/assets/covid.jpg");
   width: 100%;
   height: 300px;
-
+}
+.bg-custom2{
+  background: url("src/assets/lottery.jpg");
+  width: 100%;
+  height: 200px;
 }
