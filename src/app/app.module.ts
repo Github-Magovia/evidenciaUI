@@ -28,6 +28,8 @@ import {OckovanieStrankaComponent} from "./child-components/ockovanie/ockovanie-
 import {
   OckovanieFormularComponent
 } from "./child-components/ockovanie/child-components/ockovanie-formular/ockovanie-formular.component";
+import { TerminyStrankaComponent } from './child-components/terminy/terminy-stranka/terminy-stranka.component';
+import { TerminyFormularComponent } from './child-components/terminy/child-components/terminy-formular/terminy-formular.component';
 import {SortLottery} from "./child-components/hlavna/hlavna-stranka/sort-lottery";
 
 @NgModule({
@@ -48,7 +50,9 @@ import {SortLottery} from "./child-components/hlavna/hlavna-stranka/sort-lottery
     SortLottery,
     OckovanieZoznamComponent,
     OckovanieStrankaComponent,
-    OckovanieFormularComponent
+    OckovanieFormularComponent,
+    TerminyStrankaComponent,
+    TerminyFormularComponent
   ],
   imports: [
     BrowserModule,

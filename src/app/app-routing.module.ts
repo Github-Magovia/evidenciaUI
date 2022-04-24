@@ -4,6 +4,7 @@ import {HlavnaStrankaComponent} from "./child-components/hlavna/hlavna-stranka/h
 import {OsobyStrankaComponent} from "./child-components/osoby/osoby-stranka/osoby-stranka.component";
 import {VakcinyStrankaComponent} from "./child-components/vakciny/vakciny-stranka/vakciny-stranka.component";
 import {OckovanieStrankaComponent} from "./child-components/ockovanie/ockovanie-stranka/ockovanie-stranka.component";
+import {TerminyStrankaComponent} from "./child-components/terminy/terminy-stranka/terminy-stranka.component";
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'ockovania',
     component: OckovanieStrankaComponent
+  },
+  {
+    path: 'terminy',
+    component: TerminyStrankaComponent
   }
 ];
 
