@@ -33,10 +33,10 @@
     >
       <!-- Left links -->
       <!-- Login - small/medium -->
-      <ul class="navbar-nav col-1 justify-content-start align-items-start m-2 d-flex d-lg-none">
-        <li class="nav-item btn-primary">
-          <i><i class="bi bi-person-circle"></i></i>
-        </li>
+      <ul class="navbar-nav col-md-2 m-2 d-lg-none">
+        <button type="button" (click)="logOut()" class="btn btn-primary">
+          <i class="bi bi-box-arrow-in-left"></i>Odhlásiť
+        </button>
       </ul>
       <ul class="navbar-nav me-6 mb-2 mb-lg-0">
         <li class="nav-item">
@@ -64,8 +64,8 @@
   </div>
   <!-- Login - large+ -->
   <div class="d-none d-lg-flex">
-    <button type="button" class="btn btn-primary px-3 me-2 ">
-      <i class="bi bi-person-circle"></i>
+    <button type="button" (click)="logOut()" class="btn btn-primary px-3 me-2 ">
+      <i class="bi bi-box-arrow-in-left"></i>Odhlásiť
     </button>
   </div>
   <!-- Container wrapper -->

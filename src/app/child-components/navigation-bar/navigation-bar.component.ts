@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import {OAuthService} from "angular-oauth2-oidc";
 
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
   styleUrls: ['./navigation-bar.component.css']
 })
-export class NavigationBarComponent implements OnInit {
+export class NavigationBarComponent {
 
-  constructor() { }
+  constructor(private oauthService: OAuthService) {
+    //this.oauthService.configure(authCodeFlowConfig);
+  }
 
-  ngOnInit(): void {
+  logOut(): void {
+    this.oauthService.logOut();
   }
 
 }
