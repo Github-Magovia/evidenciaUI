@@ -1,4 +1,4 @@
-import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Component, OnDestroy, OnInit, QueryList, ViewChildren} from '@angular/core';
 import {DatePipe} from "@angular/common";
 import {DataService} from "../../../data.service";
 import {CountryData} from "../../../../models/model";
@@ -6,6 +6,9 @@ import {Lottery} from "../../../../models/lottery.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SortEvent, SortLottery} from "./sort-lottery";
 import {LotteryService} from "./services/lottery.service";
+import {Subscription} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
+import Swal from "sweetalert2";
 
 
 const compare = (v1: String | number, v2: String | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
@@ -17,9 +20,9 @@ const compare = (v1: String | number, v2: String | number) => v1 < v2 ? -1 : v1 
   providers: [DatePipe]
 
 })
-export class HlavnaStrankaComponent implements OnInit {
-
+export class HlavnaStrankaComponent implements OnInit, OnDestroy {
   filtering: FormGroup;
+  sub: Subscription = new Subscription();
   countries: any[];
   country:any;
   confirmed:any;
@@ -62,29 +65,43 @@ export class HlavnaStrankaComponent implements OnInit {
 
 
   ngOnInit() {
-    this.service.getCountry().subscribe(data=>{
+    this.sub.add(this.service.getCountry().subscribe(data=>{
       this.countries=data;
       this.country=data[0].Country;
       this.myDate=new Date();
       this.getDetails();
-    })
-    this.lotterySrv.getWinners().subscribe(data=>{
+    },
+      (error: HttpErrorResponse) => {
+        Swal.fire("Chyba " + error.name + " (" + error.status + ")", "Obsah chyby:<br> " + error.message, 'error')
+      }));
+    this.sub.add(this.lotterySrv.getWinners().subscribe(data=>{
       this.lottery=data;
       this.refreshTable();
-    })
+    },
+      (error: HttpErrorResponse) => {
+        Swal.fire("Chyba " + error.name + " (" + error.status + ")", "Obsah chyby:<br> " + error.message, 'error')
+      }));
   }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
+  }
+
   getCountry(c:any){
     this.country=c;
     this.getDetails();
   }
 
   getDetails(){
-    this.service.getData(this.country).subscribe(data=>{
+    this.sub.add(this.service.getData(this.country).subscribe(data=>{
       let index = data.length-1;
       this.confirmed=data[index].Confirmed;
       this.active=data[index].Active;
       this.death=data[index].Deaths;
-    });
+    },
+      (error: HttpErrorResponse) => {
+        Swal.fire("Chyba " + error.name + " (" + error.status + ")", "Obsah chyby:<br> " + error.message, 'error')
+      }));
   }
 
   private filterOut(): Lottery[] {
