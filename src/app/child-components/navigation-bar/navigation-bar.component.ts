@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
 
 @Component({
@@ -7,6 +7,7 @@ import {OAuthService} from "angular-oauth2-oidc";
   styleUrls: ['./navigation-bar.component.css']
 })
 export class NavigationBarComponent {
+  @Input() roles: string[] = [];
 
   constructor(private oauthService: OAuthService) {
     //this.oauthService.configure(authCodeFlowConfig);
@@ -16,4 +17,12 @@ export class NavigationBarComponent {
     this.oauthService.logOut();
   }
 
+  hasRole(role: string): boolean {
+    for (let r of this.roles) {
+      if (r.match(role)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

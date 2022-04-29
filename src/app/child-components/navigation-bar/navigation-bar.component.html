@@ -48,7 +48,7 @@
           <a class="nav-link" routerLink="/vakciny" routerLinkActive="active">Evidencia vakcín</a>
         </li>
       </ul>
-      <ul class="navbar-nav me-6 mb-2 mb-lg-0">
+      <ul class="navbar-nav me-6 mb-2 mb-lg-0" *ngIf="hasRole('ADMIN')">
         <li class="nav-item">
           <a class="nav-link" routerLink="/ockovania" routerLinkActive="active">Evidencia očkovaní</a>
         </li>
