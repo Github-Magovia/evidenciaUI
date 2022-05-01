@@ -1,4 +1,9 @@
 <app-terminy-formular [termin]="termin"
                       (createTermin)="pridajTermin($event)">
 
+
 </app-terminy-formular>
+<app-terminy-zoznam [terminy]="terminy"
+                     [isLoaded]="isLoaded"
+                     (editTermin)="nastavTermin($event)"
+></app-terminy-zoznam>

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Termin} from "../../../../../models/termin.model";
 import Swal from "sweetalert2";
+import {Osoba} from "../../../../../models/osoba.model";
 
 @Component({
   selector: 'app-terminy-formular',
@@ -18,18 +19,11 @@ export class TerminyFormularComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  shouldDisplayDate(date: Date) : boolean {
-    if (date != this.lastDate) {
-      this.lastDate = date;
-      return false;
-    }
-    return true;
-  }
 
   public naplnCas(cas: String): void{
     this.terminyForm.controls['timeOfVaccination'].setValue(cas);
   }
-
+  @Input() osoby: Osoba[];
   @Input()
   set termin(data: Termin) {
     if (data) { this.naplnFormular(data); }
@@ -47,6 +41,9 @@ export class TerminyFormularComponent implements OnInit {
     this.deleteTermin = new EventEmitter<number>();
     this.terminyForm = new FormGroup({
       id: new FormControl(null),
+      idPerson: new FormControl(null, [
+        Validators.required
+      ]),
       vaccinationCentre: new FormControl(null, [
         Validators.required
       ]),
@@ -61,6 +58,7 @@ export class TerminyFormularComponent implements OnInit {
 
   private naplnFormular(t: Termin): void {
     this.terminyForm.controls['id'].setValue(t.id);
+    this.terminyForm.controls['idPerson'].setValue(t.idPerson);
     this.terminyForm.controls['vaccinationCentre'].setValue(t.vaccinationCentre);
     this.terminyForm.controls['dateOfVaccination'].setValue(t.dateOfVaccination);
     this.terminyForm.controls['timeOfVaccination'].setValue(t.dateOfVaccination);
@@ -69,12 +67,27 @@ export class TerminyFormularComponent implements OnInit {
 
  public add(): void {
       this.createTermin.emit({
+        idPerson: this.terminyForm.value.idPerson,
         vaccinationCentre: this.terminyForm.value.vaccinationCentre,
-        dateOfVaccination: this.terminyForm.value.dateOfVaccination + "  " + this.terminyForm.value.timeOfVaccination
+        dateOfVaccination: this.terminyForm.value.dateOfVaccination + " " + this.terminyForm.value.timeOfVaccination
       });
     Swal.fire("Termín pridaný", "Termín bol úspešne pridaný.", "success");
+    this.terminyForm.reset();
   }
 
+  public uprav(): void{
+    this.editTermin.emit(this.terminyForm.value);
+    this.terminyForm.reset();
+  }
+
+  public zastavUpravu(): void {
+    this.termin = undefined;
+    this.terminyForm.reset();
+  }
+
+  public zmaz(): void {
+    this.deleteTermin.emit(this.terminyForm.value.id);
+  }
 
 
 }

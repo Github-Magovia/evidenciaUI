@@ -2,6 +2,12 @@
 <div class="container">
 <form [formGroup]="terminyForm">
   <div class="form-outline mb-4">
+    <label class="form-label" for="idPerson">Vyber osobu: </label>
+    <select  formControlName="idPerson" class="form-select" id="idPerson">
+      <option *ngFor="let osoba of osoby" value="{{osoba.id}}">({{osoba.id}}) {{osoba.firstName}} {{osoba.lastName}}</option>
+    </select>
+  </div>
+  <div class="form-outline mb-4">
     <label class="form-label" for="miesto">Vyberte miesto očkovania: </label>
     <select  id="miesto" class="form-select" formControlName="vaccinationCentre">
       <option value="ZVOLEN">Očkovacie centrum Zvolen</option>
@@ -18,61 +24,74 @@
   </div>
 
  <br>
-  <div class="container">
+  <div class="container text-center" *ngIf="this.terminyForm.controls['dateOfVaccination'].valid">
   <div class="row">
-  <div class="col-2" *ngIf="shouldDisplayDate">
+  <div class="col-2">
     <button (click)="naplnCas('10:00:00')" ngDefaultControl class="btn btn-info text-white" formControlName="timeOfVaccination">10:00</button></div>
-    <div class="col-2" *ngIf="shouldDisplayDate">
+    <div class="col-2">
       <button (click)="naplnCas('10:30:00')" ngDefaultControl class="btn btn-info text-white" formControlName="timeOfVaccination">10:30</button></div>
-    <div class="col-2" *ngIf="shouldDisplayDate">
+    <div class="col-2">
       <button (click)="naplnCas('11:00:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >11:00</button></div>
-    <div class="col-2" *ngIf="shouldDisplayDate">
+    <div class="col-2">
       <button (click)="naplnCas('11:30:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >11:30</button></div>
-    <div class="col-2" *ngIf="shouldDisplayDate">
+    <div class="col-2">
       <button (click)="naplnCas('12:00:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >12:00</button></div>
-    <div class="col-2" *ngIf="shouldDisplayDate">
+    <div class="col-2">
       <button (click)="naplnCas('12:30:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination">12:30</button></div>
   </div>
   </div>
   <br>
-  <div class="container">
+  <div class="container text-center" *ngIf="this.terminyForm.controls['dateOfVaccination'].valid">
     <div class="row">
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('13:00:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >13:00</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('13:30:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >13:30</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('14:00:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >14:00</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('14:30:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >14:30</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2">
         <button (click)="naplnCas('15:00:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination">15:00</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('15:30:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination">15:30</button></div>
     </div>
   </div>
   <br>
-  <div class="container">
+  <div class="container text-center" *ngIf="this.terminyForm.controls['dateOfVaccination'].valid">
     <div class="row">
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('16:00:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination">16:00</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('16:30:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >16:30</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('17:00:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >17:00</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('17:30:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination" >17:30</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('18:00:00')" ngDefaultControl class="btn btn-info text-white" formControlName="timeOfVaccination" >18:00</button></div>
-      <div class="col-2" *ngIf="shouldDisplayDate">
+      <div class="col-2" >
         <button (click)="naplnCas('18:30:00')" ngDefaultControl class="btn btn-info text-white"  formControlName="timeOfVaccination">18:30</button></div>
     </div>
   </div>
 </form>
 <br>
-  <div class="col-2" *ngIf="shouldDisplayDate">
-    <button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="add()">Pridaj termín</button>
-</div>
+  <div class="text-center" *ngIf="this.terminyForm.controls['dateOfVaccination'].valid">
+    <button
+            (click)="add()"
+            [attr.disabled]="terminyForm.valid? null : true" class="btn btn-lg btn-success ms-4 mb-2 mt-4 text-center">Pridaj termín</button>
+  </div>
+  <div class="text-center" *ngIf="this.terminyForm.controls['dateOfVaccination'].valid">
+    <button
+      (click)="uprav()"
+      [attr.disabled]="terminyForm.valid? null : true" class="btn btn-lg btn-primary ms-4 mb-2 mt-4 text-center">Uprav termín</button>
+  </div>
+  <div class="text-center" *ngIf="this.terminyForm.controls['dateOfVaccination'].valid">
+    <button
+      (click)="zmaz()"
+      [attr.disabled]="terminyForm.valid? null : true" class="btn btn-lg btn-danger ms-4 mb-2 mt-4 text-center">Odstráň termín</button>
+  </div>
+  <br>
 </div>
 
 

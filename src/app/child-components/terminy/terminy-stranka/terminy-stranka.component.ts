@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import {Termin} from "../../../../models/termin.model";
 import {TerminyFormularComponent} from "../child-components/terminy-formular/terminy-formular.component";
 import {TerminyService} from "../services/terminy.service";
+import {OsobyService} from "../../osoby/services/osoby.service";
+import {Osoba} from "../../../../models/osoba.model";
 
 @Component({
   selector: 'app-terminy-stranka',
@@ -14,13 +16,25 @@ import {TerminyService} from "../services/terminy.service";
 export class TerminyStrankaComponent implements OnInit {
 
   terminy: Termin[] = [];
+  osoby: Osoba[] = [];
   private sub: Subscription = new Subscription();
   isLoaded: boolean = false;
   termin?: Termin;
   @ViewChild(TerminyFormularComponent) formular: TerminyFormularComponent;
 
 
-  constructor(private terminySrv: TerminyService) { }
+  constructor(private terminySrv: TerminyService, private osobySrv: OsobyService) { }
+
+
+  refreshOsoby(): void {
+    this.sub.add(this.osobySrv.getPeople().subscribe(data=>{
+        this.osoby = data;
+        this.isLoaded = true;
+      },
+      (error: HttpErrorResponse) => {
+        Swal.fire("Chyba " + error.name + " (" + error.status + ")", "Obsah chyby:<br> " + error.message, 'error')
+      }));
+  }
 
   refreshTermin(): void {
     this.isLoaded = false;
@@ -81,6 +95,7 @@ export class TerminyStrankaComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshTermin();
+    this.refreshOsoby();
   }
 
   ngOnDestroy(): void { this.sub.unsubscribe(); }
