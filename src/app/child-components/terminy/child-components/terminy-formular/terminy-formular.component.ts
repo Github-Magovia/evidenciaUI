@@ -75,19 +75,6 @@ export class TerminyFormularComponent implements OnInit {
     this.terminyForm.reset();
   }
 
-  public uprav(): void{
-    this.editTermin.emit(this.terminyForm.value);
-    this.terminyForm.reset();
-  }
-
-  public zastavUpravu(): void {
-    this.termin = undefined;
-    this.terminyForm.reset();
-  }
-
-  public zmaz(): void {
-    this.deleteTermin.emit(this.terminyForm.value.id);
-  }
 
 
 }

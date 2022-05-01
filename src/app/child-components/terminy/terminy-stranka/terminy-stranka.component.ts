@@ -66,7 +66,8 @@ export class TerminyStrankaComponent implements OnInit {
   }
 
   pridajTermin(t: Termin): void {
-    this.sub.add(this.terminySrv.createTerm(t).subscribe(data => {
+    this.sub.add(this.terminySrv.createTerm(t).subscribe( (data:any) => {
+      Swal.fire("Rezervácia bola úspešná", "Rezervácia pre " + data.personName + "vakcínou " + data.vaccineName + "v termine " + data.dateOfVaccination + "bola úspešne pridaná.","success")
         this.refreshTermin();
       },
       (error: HttpErrorResponse) => {

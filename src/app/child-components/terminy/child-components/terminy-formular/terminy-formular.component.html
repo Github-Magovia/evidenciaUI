@@ -81,16 +81,6 @@
             (click)="add()"
             [attr.disabled]="terminyForm.valid? null : true" class="btn btn-lg btn-success ms-4 mb-2 mt-4 text-center">Pridaj termín</button>
   </div>
-  <div class="text-center" *ngIf="this.terminyForm.controls['dateOfVaccination'].valid">
-    <button
-      (click)="uprav()"
-      [attr.disabled]="terminyForm.valid? null : true" class="btn btn-lg btn-primary ms-4 mb-2 mt-4 text-center">Uprav termín</button>
-  </div>
-  <div class="text-center" *ngIf="this.terminyForm.controls['dateOfVaccination'].valid">
-    <button
-      (click)="zmaz()"
-      [attr.disabled]="terminyForm.valid? null : true" class="btn btn-lg btn-danger ms-4 mb-2 mt-4 text-center">Odstráň termín</button>
-  </div>
   <br>
 </div>
 

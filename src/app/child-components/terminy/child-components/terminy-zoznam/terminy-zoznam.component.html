@@ -66,6 +66,9 @@
           <td>{{termin.idPerson}}</td>
           <td>{{termin.vaccinationCentre}}</td>
           <td>{{termin.dateOfVaccination}}</td>
+          <td>
+            <button  pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="remove(termin.id)"></button>
+          </td>
         </tr>
         </tbody>
       </table>

@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Termin} from "../../../../../models/termin.model";
 import {SortEvent, SortTermin} from "./sort-terminy";
 
+
 const compare = (v1: String | number, v2: String | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
 @Component({
@@ -111,6 +112,13 @@ export class TerminyZoznamComponent implements OnInit {
       });
     }
     return filtred;
+  }
+
+  @Output()
+  removeTermin: EventEmitter<number> = new EventEmitter<number>();
+
+  remove(id: number): void{
+    this.removeTermin.emit(id);
   }
 
   ngOnInit(): void {
