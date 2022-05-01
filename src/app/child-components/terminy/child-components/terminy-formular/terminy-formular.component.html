@@ -2,8 +2,8 @@
 <div class="container">
 <form [formGroup]="terminyForm">
   <div class="form-outline mb-4">
-    <label class="form-label" for="idPerson">Vyber osobu: </label>
-    <select  formControlName="idPerson" class="form-select" id="idPerson">
+    <label class="form-label" for="personId">Vyber osobu: </label>
+    <select  formControlName="personId" class="form-select" id="personId">
       <option *ngFor="let osoba of osoby" value="{{osoba.id}}">({{osoba.id}}) {{osoba.firstName}} {{osoba.lastName}}</option>
     </select>
   </div>

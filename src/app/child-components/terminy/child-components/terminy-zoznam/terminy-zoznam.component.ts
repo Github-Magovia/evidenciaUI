@@ -34,7 +34,7 @@ export class TerminyZoznamComponent implements OnInit {
         Validators.min(0),
         Validators.required
       ]),
-      tIdPerson: new FormControl(null, [
+      tpersonId: new FormControl(null, [
         Validators.min(1),
         Validators.required
       ]),
@@ -93,10 +93,10 @@ export class TerminyZoznamComponent implements OnInit {
         return term.id.toString(10).match(filter);
       });
     }
-    if(this.filtering.controls['tIdPerson'].valid){
-      filter = this.filtering.controls['tIdPerson'].value.toString();
+    if(this.filtering.controls['tpersonId'].valid){
+      filter = this.filtering.controls['tpersonId'].value.toString();
       filtred = filtred.filter((term: Termin) => {
-        return term.idPerson.toString(10).match(filter);
+        return term.personId.toString(10).match(filter);
       });
     }
     if(this.filtering.controls['tVaccinationCentre'].valid){

@@ -41,7 +41,7 @@ export class TerminyFormularComponent implements OnInit {
     this.deleteTermin = new EventEmitter<number>();
     this.terminyForm = new FormGroup({
       id: new FormControl(null),
-      idPerson: new FormControl(null, [
+      personId: new FormControl(null, [
         Validators.required
       ]),
       vaccinationCentre: new FormControl(null, [
@@ -58,20 +58,31 @@ export class TerminyFormularComponent implements OnInit {
 
   private naplnFormular(t: Termin): void {
     this.terminyForm.controls['id'].setValue(t.id);
-    this.terminyForm.controls['idPerson'].setValue(t.idPerson);
+    this.terminyForm.controls['personId'].setValue(t.personId);
     this.terminyForm.controls['vaccinationCentre'].setValue(t.vaccinationCentre);
     this.terminyForm.controls['dateOfVaccination'].setValue(t.dateOfVaccination);
     this.terminyForm.controls['timeOfVaccination'].setValue(t.dateOfVaccination);
   }
 
 
- public add(): void {
-      this.createTermin.emit({
-        idPerson: this.terminyForm.value.idPerson,
-        vaccinationCentre: this.terminyForm.value.vaccinationCentre,
-        dateOfVaccination: this.terminyForm.value.dateOfVaccination + " " + this.terminyForm.value.timeOfVaccination
-      });
-    Swal.fire("Termín pridaný", "Termín bol úspešne pridaný.", "success");
+  public add(): void {
+    Swal.fire({
+      title: 'Potvrdenie rezervácie',
+      text: 'Pridať rezervaciu na dátum: ' + this.terminyForm.value.dateOfVaccination + " " + this.terminyForm.value.timeOfVaccination,
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonText: 'Potvrdiť',
+      cancelButtonText: 'Zrušiť'
+    }).then((result) => {
+      if (result.value) {
+        this.createTermin.emit({
+          personId: this.terminyForm.value.personId,
+          vaccinationCentre: this.terminyForm.value.vaccinationCentre,
+          dateOfVaccination: this.terminyForm.value.dateOfVaccination + " " + this.terminyForm.value.timeOfVaccination
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+      }
+    })
     this.terminyForm.reset();
   }
 

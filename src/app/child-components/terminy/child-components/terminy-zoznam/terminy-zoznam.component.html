@@ -23,9 +23,9 @@
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
-            <label for="filter-tIdPerson" class="col-form-label">ID osoby: </label>
+            <label for="filter-tpersonId" class="col-form-label">ID osoby: </label>
             <div>
-              <input id="filter-tIdPerson" type="number" min="0" class="form-control" formControlName="tIdPerson"  (input)="refreshTable()">
+              <input id="filter-tpersonId" type="number" min="0" class="form-control" formControlName="tpersonId"  (input)="refreshTable()">
             </div>
           </div>
           <div class="col-sm-12 col-md-4">
@@ -55,7 +55,7 @@
         <thead>
         <tr>
           <th scope="col" sortableTerm="id" (sort)="onSort($event)">ID</th>
-          <th scope="col" sortableTerm="idPerson" (sort)="onSort($event)">ID osoby</th>
+          <th scope="col" sortableTerm="personId" (sort)="onSort($event)">ID osoby</th>
           <th scope="col" sortableTerm="vaccinationCentre" (sort)="onSort($event)">Miesto vakcinácie</th>
           <th scope="col" sortableTerm="dateOfVaccination" (sort)="onSort($event)">Dátum a čas vakcinácie</th>
         </tr>
@@ -63,7 +63,7 @@
         <tbody>
         <tr *ngFor="let termin of terminySlice" (click)="edit(termin.id)" style="cursor: pointer">
           <th scope="row">{{ termin.id }}</th>
-          <td>{{termin.idPerson}}</td>
+          <td>{{termin.personId}}</td>
           <td>{{termin.vaccinationCentre}}</td>
           <td>{{termin.dateOfVaccination}}</td>
           <td>
