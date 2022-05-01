@@ -1,0 +1,100 @@
+<div class="container-fluid mb-5" *ngIf="isLoaded == true">
+  <p>Celkový počet vakcín v systéme: {{collectionSize}}</p>
+
+  <!-- SEARCH BUTTON -->
+  <div class="m-2">
+    <button type="button" class="btn btn-primary"
+            (click)="collapse.toggle(); filtering.reset(); refreshTable();"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="collapseExample">
+      Vyhladávanie
+    </button>
+  </div>
+
+  <!-- VYHLADAVACIE POLIA - COLLAPSIBLE -->
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <form [formGroup]="filtering">
+      <div class="container-fluid mb-3">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-id" class="col-form-label">ID: </label>
+            <div>
+              <input id="filter-id" type="number" min="0" class="form-control" formControlName="id"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-tpersonId" class="col-form-label">ID osoby: </label>
+            <div>
+              <input id="filter-tpersonId" type="number" min="0" class="form-control" formControlName="tpersonId"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-place" class="col-form-label">Miesto vakcinácie: </label>
+            <div>
+              <input id="filter-place" type="text" class="form-control" formControlName="tVaccinationCentre"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <label for="filter-date" class="col-form-label">Dátum a čas vakcinácie: </label>
+            <div>
+              <input id="filter-date" type="text" class="form-control" formControlName="tDateOfVaccination"  (input)="refreshTable()">
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-end">
+            <button class="btn btn-primary" (click)="filtering.reset(); refreshTable();">Resetovať filtre</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- DATATABLE -->
+  <form>
+    <div class="table-responsive scroll-table">
+      <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+          <th scope="col" sortableTerm="id" (sort)="onSort($event)">ID</th>
+          <th scope="col" sortableTerm="personId" (sort)="onSort($event)">ID osoby</th>
+          <th scope="col" sortableTerm="vaccinationCentre" (sort)="onSort($event)">Miesto vakcinácie</th>
+          <th scope="col" sortableTerm="dateOfVaccination" (sort)="onSort($event)">Dátum a čas vakcinácie</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let termin of terminySlice" (click)="edit(termin.id)" style="cursor: pointer">
+          <th scope="row">{{ termin.id }}</th>
+          <td>{{termin.personId}}</td>
+          <td>{{termin.vaccinationCentre}}</td>
+          <td>{{termin.dateOfVaccination}}</td>
+          <td>
+            <i class="bi bi-trash" (click)="remove(termin.id)"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+
+  <!-- PAGINATION -->
+  <div class="p-2">
+    <ngb-pagination class="d-flex col-12 justify-content-center" [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshTable()">
+    </ngb-pagination>
+
+    <div class="d-flex col-12 justify-content-center">
+      <select class="form-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshTable()">
+        <option [ngValue]="5">5 položiek na stranu</option>
+        <option [ngValue]="10">10 položiek na stranu</option>
+        <option [ngValue]="25">25 položiek na stranu</option>
+        <option [ngValue]="50">50 položiek na stranu</option>
+        <option [ngValue]="100">100 položiek na stranu</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- SPINNER -->
+<div class="container-fluid d-flex justify-content-center m-5" *ngIf="isLoaded == false">
+  <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>

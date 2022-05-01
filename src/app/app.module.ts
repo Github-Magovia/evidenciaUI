@@ -33,6 +33,8 @@ import { TerminyFormularComponent } from './child-components/terminy/child-compo
 import {SortLottery} from "./child-components/hlavna/hlavna-stranka/sort-lottery";
 import {AuthConfig, NullValidationHandler, OAuthModule, OAuthService} from 'angular-oauth2-oidc';
 import {AuthInterceptor} from "../security/AuthInterceptor";
+import { TerminyZoznamComponent } from './child-components/terminy/child-components/terminy-zoznam/terminy-zoznam.component';
+import {SortTermin} from "./child-components/terminy/child-components/terminy-zoznam/sort-terminy";
 
 export const authCodeFlowConfig: AuthConfig = {
   issuer: 'http://localhost:8180/auth/realms/EvidenciaApplication',
@@ -71,11 +73,13 @@ function configureWithNewConfigApi(oauthService: OAuthService) {
     SortVakciny,
     SortOckovanie,
     SortLottery,
+    SortTermin,
     OckovanieZoznamComponent,
     OckovanieStrankaComponent,
     OckovanieFormularComponent,
     TerminyStrankaComponent,
-    TerminyFormularComponent
+    TerminyFormularComponent,
+    TerminyZoznamComponent
   ],
   imports: [
     BrowserModule,
