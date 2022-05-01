@@ -70,7 +70,7 @@ export class TerminyFormularComponent implements OnInit {
  public add(): void {
       this.createTermin.emit({
         vaccinationCentre: this.terminyForm.value.vaccinationCentre,
-        dateOfVaccination: this.terminyForm.value.date + "  " + this.terminyForm.value.time
+        dateOfVaccination: this.terminyForm.value.dateOfVaccination + "  " + this.terminyForm.value.timeOfVaccination
       });
     Swal.fire("Termín pridaný", "Termín bol úspešne pridaný.", "success");
   }
