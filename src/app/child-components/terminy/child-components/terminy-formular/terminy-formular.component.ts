@@ -80,10 +80,11 @@ export class TerminyFormularComponent implements OnInit {
           vaccinationCentre: this.terminyForm.value.vaccinationCentre,
           dateOfVaccination: this.terminyForm.value.dateOfVaccination + " " + this.terminyForm.value.timeOfVaccination
         });
+        this.terminyForm.reset();
       } else if (result.dismiss === Swal.DismissReason.cancel) {
+        this.terminyForm.reset();
       }
     })
-    this.terminyForm.reset();
   }
 
 
