@@ -41,7 +41,7 @@ export class TerminyZoznamComponent implements OnInit {
         Validators.min(1),
         Validators.required
       ]),
-      tDate: new FormControl(null, [
+      tDateOfVaccination: new FormControl(null, [
         Validators.min(0),
         Validators.required
       ])
@@ -104,8 +104,8 @@ export class TerminyZoznamComponent implements OnInit {
         return term.vaccinationCentre.toLocaleLowerCase().match(filter);
       });
     }
-    if(this.filtering.controls['tDate'].valid) {
-      filter = this.filtering.controls['tDate'].value.toString();
+    if(this.filtering.controls['tDateOfVaccination'].valid) {
+      filter = this.filtering.controls['tDateOfVaccination'].value.toString();
       filtred = filtred.filter((term: Termin) => {
         return term.dateOfVaccination.toLocaleLowerCase().match(filter);
       });
