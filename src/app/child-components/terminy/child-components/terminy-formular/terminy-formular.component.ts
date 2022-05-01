@@ -15,17 +15,20 @@ export class TerminyFormularComponent implements OnInit {
 
   lastDate: Date = null;
 
+  ngOnInit(): void {
+  }
+
   shouldDisplayDate(date: Date) : boolean {
     if (date != this.lastDate) {
       this.lastDate = date;
-      return true;
+      return false;
     }
-    return false;
+    return true;
   }
 
-  @ViewChild('content', { static: true }) modal: ElementRef;
-  showAlert: boolean;
-  isEditing: boolean = false;
+  public naplnCas(cas: String): void{
+    this.terminyForm.controls['timeOfVaccination'].setValue(cas);
+  }
 
   @Input()
   set termin(data: Termin) {
@@ -39,7 +42,6 @@ export class TerminyFormularComponent implements OnInit {
   deleteTermin: EventEmitter<number>;
 
   constructor(private modalService: NgbModal) {
-    this.showAlert = false;
     this.createTermin = new EventEmitter<Termin>();
     this.editTermin = new EventEmitter<Termin>();
     this.deleteTermin = new EventEmitter<number>();
@@ -61,7 +63,7 @@ export class TerminyFormularComponent implements OnInit {
     this.terminyForm.controls['id'].setValue(t.id);
     this.terminyForm.controls['vaccinationCentre'].setValue(t.vaccinationCentre);
     this.terminyForm.controls['dateOfVaccination'].setValue(t.dateOfVaccination);
-    this.terminyForm.controls['timeOfVaccination'].setValue(t.timeOfVaccination);
+    this.terminyForm.controls['timeOfVaccination'].setValue(t.dateOfVaccination);
   }
 
 
@@ -74,12 +76,8 @@ export class TerminyFormularComponent implements OnInit {
     Swal.fire("Termín pridaný", "Termín bol úspešne pridaný.", "success");
   }
 
-  public toggleAlert(val: boolean) { this.showAlert = val; }
 
-  public toggleEditing(val: boolean) { this.isEditing = val; }
 
-  ngOnInit(): void {
-  }
 }
 
 
