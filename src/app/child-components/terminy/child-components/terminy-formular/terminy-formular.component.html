@@ -2,79 +2,72 @@
 <div class="container">
 <form [formGroup]="terminyForm">
   <div class="form-outline mb-4">
-    <label class="form-label">Vyberte miesto očkovania: </label>
-    <select class="form-select">
-      <option>Očkovacie centrum Zvolen</option>
-      <option>Očkovacie centrum Bratislava</option>
-      <option>Očkovacie centrum Prešov</option>
-      <option>Očkovacie centrum Košice</option>
-      <option>Očkovacie centrum Žilina</option>
-      <option>Očkovacie centrum Trenčín</option>
+    <label class="form-label" for="miesto">Vyberte miesto očkovania: </label>
+    <select  id="miesto" class="form-select" formControlName="vaccinationCentre">
+      <option value="ZVOLEN">Očkovacie centrum Zvolen</option>
+      <option value="BRATISLAVA">Očkovacie centrum Bratislava</option>
+      <option value="PRESOV">Očkovacie centrum Prešov</option>
+      <option value="KOSICE">Očkovacie centrum Košice</option>
+      <option value="ZILINA">Očkovacie centrum Žilina</option>
+      <option value="TRENCIN">Očkovacie centrum Trenčín</option>
     </select>
   </div>
   <div class="form-outline datepicker">
-    <label for="datNar" class="form-label">Vyberte dátum a následne čas očkovania: </label>
-    <input type="date" formControlName="dateOfBirth" class="form-control" id="datNar">
+    <label for="datOckovania" class="form-label">Vyberte dátum a následne čas očkovania: </label>
+    <input type="date" formControlName="dateOfVaccination" class="form-control" id="datOckovania">
   </div>
 </form>
  <br>
   <div class="container">
   <div class="row">
   <div class="col-2" *ngIf="shouldDisplayDate">
-    <button class="btn btn-info text-white">10:00</button></div>
+    <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie1">10:00</button></div>
     <div class="col-2" *ngIf="shouldDisplayDate">
-      <button class="btn btn-info text-white">10:30</button></div>
+      <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie2">10:30</button></div>
     <div class="col-2" *ngIf="shouldDisplayDate">
-      <button class="btn btn-info text-white">11:00</button></div>
+      <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie3">11:00</button></div>
     <div class="col-2" *ngIf="shouldDisplayDate">
-      <button class="btn btn-info text-white">11:30</button></div>
+      <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie4">11:30</button></div>
     <div class="col-2" *ngIf="shouldDisplayDate">
-      <button class="btn btn-info text-white">12:00</button></div>
+      <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie5">12:00</button></div>
     <div class="col-2" *ngIf="shouldDisplayDate">
-      <button class="btn btn-info text-white">12:30</button></div>
+      <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie6">12:30</button></div>
   </div>
   </div>
   <br>
   <div class="container">
     <div class="row">
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">13:00</button></div>
+        <button (click)="add()"  class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie7">13:00</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">13:30</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie8">13:30</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">14:00</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie9">14:00</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">14:30</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie10">14:30</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">15:00</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie11">15:00</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">15:30</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie12">15:30</button></div>
     </div>
   </div>
   <br>
   <div class="container">
     <div class="row">
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">16:00</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie13">16:00</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">16:30</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie14">16:30</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">17:00</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie15">17:00</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">17:30</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie16">17:30</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">18:00</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie17">18:00</button></div>
       <div class="col-2" *ngIf="shouldDisplayDate">
-        <button class="btn btn-info text-white">18:30</button></div>
+        <button (click)="add()" class="btn btn-info text-white" type="time" formControlName="timeOfVaccination" id="datVakcinacie18">18:30</button></div>
     </div>
   </div>
 <br>
 </div>
-<div class="modal-footer bg-light">
-  <button type="button" class="btn btn-success"
-         >Rezervovať</button>
-  <button type="button" class="btn btn-primary"
-         >Upraviť</button>
-  <button type="button" class="btn btn-danger" >Zmazať</button>
-  <button type="button" class="btn btn-dark">Zrušiť</button>
-</div>
+
