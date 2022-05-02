@@ -86,7 +86,7 @@ export class TerminyStrankaComponent implements OnInit {
 
   zmazTermin(id: number): void {
     this.sub.add(this.terminySrv.deleteTerm(id).subscribe(data => {
-        Swal.fire("Osoba zmazaná", "Osoba bola úspešne zmazaná.", "success");
+        Swal.fire("Rezervácia zrušená", "Rezervácia bola úspešne zmazaná.", "success");
         this.refreshTermin();
       },
       (error: HttpErrorResponse) => {
