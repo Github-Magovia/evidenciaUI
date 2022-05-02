@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,7 +14,7 @@ import { OsobyZoznamComponent } from './child-components/osoby/child-components/
 import { OsobyFormularComponent } from './child-components/osoby/child-components/osoby-formular/osoby-formular.component';
 import { FooterBarComponent } from './child-components/footer-bar/footer-bar.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { VakcinyStrankaComponent } from './child-components/vakciny/vakciny-stranka/vakciny-stranka.component';
 import { VakcinaFormularComponent } from './child-components/vakciny/child-components/vakcina-formular/vakcina-formular.component';
 import { VakcinaZoznamComponent } from './child-components/vakciny/child-components/vakcina-zoznam/vakcina-zoznam.component';
@@ -31,6 +31,31 @@ import {
 import { TerminyStrankaComponent } from './child-components/terminy/terminy-stranka/terminy-stranka.component';
 import { TerminyFormularComponent } from './child-components/terminy/child-components/terminy-formular/terminy-formular.component';
 import {SortLottery} from "./child-components/hlavna/hlavna-stranka/sort-lottery";
+import {AuthConfig, NullValidationHandler, OAuthModule, OAuthService} from 'angular-oauth2-oidc';
+import {AuthInterceptor} from "../security/AuthInterceptor";
+import { TerminyZoznamComponent } from './child-components/terminy/child-components/terminy-zoznam/terminy-zoznam.component';
+import {SortTermin} from "./child-components/terminy/child-components/terminy-zoznam/sort-terminy";
+
+export const authCodeFlowConfig: AuthConfig = {
+  issuer: 'http://localhost:8180/auth/realms/EvidenciaApplication',
+  redirectUri: 'http://localhost:4200',
+  clientId: 'fe-app',
+  scope: 'openid profile email',
+  requireHttps: false,
+  showDebugInformation: true,
+};
+
+function init_app(oauthService: OAuthService) {
+  return () => configureWithNewConfigApi(oauthService);
+}
+
+function configureWithNewConfigApi(oauthService: OAuthService) {
+  oauthService.configure(authCodeFlowConfig);
+  oauthService.tokenValidationHandler = new NullValidationHandler();
+  oauthService.setupAutomaticSilentRefresh();
+  oauthService.events.subscribe(e => { });
+  return oauthService.loadDiscoveryDocumentAndTryLogin();
+}
 
 @NgModule({
   declarations: [
@@ -48,11 +73,13 @@ import {SortLottery} from "./child-components/hlavna/hlavna-stranka/sort-lottery
     SortVakciny,
     SortOckovanie,
     SortLottery,
+    SortTermin,
     OckovanieZoznamComponent,
     OckovanieStrankaComponent,
     OckovanieFormularComponent,
     TerminyStrankaComponent,
-    TerminyFormularComponent
+    TerminyFormularComponent,
+    TerminyZoznamComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +90,24 @@ import {SortLottery} from "./child-components/hlavna/hlavna-stranka/sort-lottery
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: init_app,
+      deps: [
+        OAuthService
+      ],
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
