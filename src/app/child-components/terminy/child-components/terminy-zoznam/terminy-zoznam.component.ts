@@ -26,6 +26,7 @@ export class TerminyZoznamComponent implements OnInit {
   @Output()
   editTermin: EventEmitter<number> = new EventEmitter<number>();
 
+  // TODO implement editing
   edit(id: number): void { this.editTermin.emit(id); }
 
   constructor() {
@@ -49,7 +50,6 @@ export class TerminyZoznamComponent implements OnInit {
     });
   }
 
-  // TODO ARROWS
   onSort({column, direction}: SortEvent) {
     this.headers.forEach(header => {
       if (header.sortableTerm !== column) { header.direction = ''; }
@@ -63,7 +63,6 @@ export class TerminyZoznamComponent implements OnInit {
     }
   }
 
-  // TODO REGEX
   refreshTable(): void {
     this.refreshTerminy();
     if(this.filtering.dirty) {

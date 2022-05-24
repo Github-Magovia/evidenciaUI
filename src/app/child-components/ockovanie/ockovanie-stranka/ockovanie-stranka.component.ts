@@ -57,10 +57,22 @@ export class OckovanieStrankaComponent implements OnInit {
       }));
   }
 
+  // Currently only serves as confirmation to delete vaccination
   nastavOckovanie(id: number): void {
     this.sub.add(this.ockovanieSrv.getVaccinationById(id).subscribe(data => {
-      this.ockovanie = data;
-      this.formular.open();
+        Swal.fire({
+          title: 'Zmazať očkovanie s ID: ' + data.id,
+          text: "Naozaj chcete zmazať vybrané očkovanie?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#d91717',
+          cancelButtonColor: '#8c8c8c',
+          confirmButtonText: 'Zmazať'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            this.zmazOckovanie(id);
+          }
+        })
     },
       (error: HttpErrorResponse) => {
         switch (error.status) {
@@ -86,16 +98,16 @@ export class OckovanieStrankaComponent implements OnInit {
       }));
   }
 
-  // TODO - not supported
-  upravOckovanie(o: Ockovanie): void {
-    this.sub.add(this.ockovanieSrv.updateVaccination(o.id,o).subscribe(data => {
-        Swal.fire("Očkovanie upravené", "Očkovanie bolo úspešne upravené.", "success");
-        this.refreshOckovanie();
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire("Chyba " + error.name + " (" + error.status + ")", "Obsah chyby:<br> " + error.message, 'error')
-      }));
-  }
+  // Not currently supported
+  // upravOckovanie(o: Ockovanie): void {
+  //   this.sub.add(this.ockovanieSrv.updateVaccination(o.id,o).subscribe(data => {
+  //       Swal.fire("Očkovanie upravené", "Očkovanie bolo úspešne upravené.", "success");
+  //       this.refreshOckovanie();
+  //   },
+  //     (error: HttpErrorResponse) => {
+  //       Swal.fire("Chyba " + error.name + " (" + error.status + ")", "Obsah chyby:<br> " + error.message, 'error')
+  //     }));
+  // }
 
   zmazOckovanie(id: number): void {
     this.sub.add(this.ockovanieSrv.deleteVaccination(id).subscribe(data => {

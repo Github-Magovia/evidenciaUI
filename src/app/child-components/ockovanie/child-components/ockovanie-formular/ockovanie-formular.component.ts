@@ -27,7 +27,6 @@ export class OckovanieFormularComponent implements OnInit {
   @Output()
   deleteOckovanie: EventEmitter<number>;
 
-  //TODO Fix Date with backend
   constructor(private modalService: NgbModal) {
     this.showAlert = false;
     this.createOckovanie = new EventEmitter<Ockovanie>();

@@ -37,10 +37,6 @@
             *ngIf="ockovanieForm.value.id === null"
             (click)="modal.close('add')"
             [attr.disabled]="ockovanieForm.valid? null : true">Pridaj</button>
-    <button type="button" class="btn btn-info"
-            *ngIf="ockovanieForm.value.id !== null"
-            (click)="modal.close('edit')"
-            [attr.disabled]="ockovanieForm.valid? null : true">Upraviť</button>
     <button type="button" class="btn btn-dark" (click)="modal.close('cancel')">Zrušiť</button>
   </div>
 </ng-template>

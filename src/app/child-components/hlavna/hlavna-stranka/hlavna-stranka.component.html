@@ -106,7 +106,7 @@
 <!-- DATATABLE -->
 <form>
   <div class="table-responsive scroll-table">
-    <table class="table table-striped table-hover">
+    <table class="table table-striped">
       <thead>
       <tr>
         <th scope="col" sortableLottery="id" (sort)="onSort($event)">ID</th>
@@ -116,7 +116,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let winner of lotterySlice" style="cursor: pointer">
+      <tr *ngFor="let winner of lotterySlice">
         <td>{{winner.id}}</td>
         <td>{{winner.firstName}}</td>
         <td>{{winner.lastName}}</td>

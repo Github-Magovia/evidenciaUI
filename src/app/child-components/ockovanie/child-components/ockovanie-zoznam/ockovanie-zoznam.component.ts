@@ -64,7 +64,6 @@ export class OckovanieZoznamComponent implements OnInit {
     });
   }
 
-  // TODO ARROWS
   onSort({column, direction}: SortEvent) {
     this.headers.forEach(header => {
       if (header.sortableVaccination !== column) { header.direction = ''; }
@@ -78,7 +77,6 @@ export class OckovanieZoznamComponent implements OnInit {
     }
   }
 
-  // TODO REGEX
   refreshTable(): void {
     this.refreshOsoby();
     if(this.filtering.dirty) {

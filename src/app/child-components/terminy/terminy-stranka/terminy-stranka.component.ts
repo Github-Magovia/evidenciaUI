@@ -90,7 +90,16 @@ export class TerminyStrankaComponent implements OnInit {
         this.refreshTermin();
       },
       (error: HttpErrorResponse) => {
-        Swal.fire("Chyba " + error.name + " (" + error.status + ")", "Obsah chyby:<br> " + error.message, 'error')
+        switch (error.status) {
+          case 401:
+            Swal.fire("Autentifikácia (" + error.status + ")", 'Na vykonanie danej akcie je potrebné sa prihlasiť.', 'error')
+            break;
+          case 403:
+            Swal.fire("Autorizácia (" + error.status + ")", 'Na vykonanie danej akcie je potrebné byť prihlasený ako administrátor', 'error')
+            break;
+          default:
+            Swal.fire("Chyba " + error.name + " (" + error.status + ")", "Obsah chyby:<br> " + error.message, 'error')
+        }
       }));
   }
 
