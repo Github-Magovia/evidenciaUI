@@ -33,21 +33,21 @@
         </div>
         <br>
         <!-- Množstvo vakcín plne zaockovanie input -->
-        <div class="form-outline">
+        <div class="form-outline" *ngIf="!isModifying">
           <label for="amountToCompleteVaccination" class="form-label">Množstvo vakcín potrebné na plné zaočkovanie: </label>
-          <input disabled type="number" min="1" formControlName="amountToCompleteVaccination" class="form-control" id="amountToCompleteVaccination">
+          <input  type="number" min="1" formControlName="amountToCompleteVaccination" class="form-control" id="amountToCompleteVaccination">
         </div>
         <br>
         <!-- Počet dni do zaciatku ucinnosti vakciny input -->
-        <div class="form-outline">
+        <div class="form-outline" *ngIf="!isModifying">
           <label for="daysToFullVaccination" class="form-label">Počet dní do začiatku plnej účinnosti: </label>
-          <input disabled type="number" min="0" formControlName="daysToFullVaccination" class="form-control" id="daysToFullVaccination">
+          <input type="number" min="0" formControlName="daysToFullVaccination" class="form-control" id="daysToFullVaccination">
         </div>
         <br>
         <!-- Trvanie vakciny input -->
-        <div class="form-outline">
+        <div class="form-outline" *ngIf="!isModifying">
           <label for="durationOfVaccine" class="form-label">Trvanie učinnosti vakcíny: </label>
-          <input disabled type="number" min="1" formControlName="durationOfVaccine" class="form-control" id="durationOfVaccine">
+          <input type="number" min="1" formControlName="durationOfVaccine" class="form-control" id="durationOfVaccine">
         </div>
       </form>
     </div>
@@ -86,7 +86,7 @@
             <p>{{this.vakcinaForm.controls['type'].value}}</p>
           </div>
           <div class="col-sm-12 col-lg-4">
-            <p class="fw-bold">Poćet vakcín </p>
+            <p class="fw-bold">Počet vakcín </p>
             <p>{{this.vakcinaForm.controls['amountOfVaccines'].value}}</p>
           </div>
           <div class="col-sm-12 col-lg-6">
@@ -107,13 +107,13 @@
     <div class="modal-footer bg-light">
       <button type="button" class="btn btn-primary text-white"
               *ngIf="vakcinaForm.value.id !== null"
-              (click)="toggleEditing(true)">Modifikovať</button>
+              (click)="toggleEditing(true); toggleModify(true);">Modifikovať</button>
       <button type="button" class="btn btn-dark" (click)="modal.close(' ')">Zavrieť</button>
     </div>
   </div>
 </ng-template>
 
 <ngb-alert class="alert alert-warning" *ngIf="showAlert" (closed)="toggleAlert(false)">Modifikácia vakcíny bola zrušená.</ngb-alert>
-<button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open(); toggleEditing(true)">Pridaj vakcínu</button>
+<button class="btn btn-lg btn-success ms-4 mb-2 mt-4" (click)="open(); toggleEditing(true);">Pridaj vakcínu</button>
 
 <hr>

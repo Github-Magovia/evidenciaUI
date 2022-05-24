@@ -72,6 +72,7 @@
           <th scope="col" sortableVaccination="idVaccine" (sort)="onSort($event)">ID vakcíny</th>
           <th scope="col" sortableVaccination="firstName" (sort)="onSort($event)">Meno osoby</th>
           <th scope="col" sortableVaccination="lastName" (sort)="onSort($event)">Priezvisko osoby</th>
+          <th scope="col" sortableVaccination="vaccineName" (sort)="onSort($event)">Názov vakcíny</th>
           <th scope="col" sortableVaccination="type" (sort)="onSort($event)">Typ vakcíny</th>
         </tr>
         </thead>
@@ -82,6 +83,7 @@
           <td>{{ockovanie.idVaccine}}</td>
           <td>{{ockovanie.firstName}}</td>
           <td>{{ockovanie.lastName}}</td>
+          <td>{{ockovanie.vaccineName}}</td>
           <td>{{ockovanie.type}}</td>
         </tr>
         </tbody>

@@ -13,6 +13,7 @@ export class VakcinaFormularComponent implements OnInit {
   @ViewChild('content', { static: true }) modal: ElementRef;
   showAlert: boolean;
   isEditing: boolean = false;
+  isModifying: boolean = false;
 
   @Input()
   set vakcina(data: Vakcina) {
@@ -107,6 +108,7 @@ export class VakcinaFormularComponent implements OnInit {
 
   public zastavUpravu(): void {
     this.vakcina = undefined;
+    this.toggleModify(false);
     this.vakcinaForm.reset();
   }
 
@@ -117,6 +119,8 @@ export class VakcinaFormularComponent implements OnInit {
   public toggleAlert(val: boolean) { this.showAlert = val; }
 
   public toggleEditing(val: boolean) { this.isEditing = val; }
+
+  public toggleModify(val: boolean) { this.isModifying = val; }
 
   ngOnInit(): void {
   }
