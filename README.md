@@ -1,3 +1,8 @@
+# Docker setup
+- ng build
+- docker build -t evidencia-ui ./
+- docker run -p 4200:4200 evidencia-ui
+
 # EvidenciaUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
