@@ -80,8 +80,23 @@
           <th scope="col" sortable="status" (sort)="onSort($event)">Status</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="hasRole('ADMIN')">
         <tr *ngFor="let osoba of osobySlice" (click)="edit(osoba.id)" style="cursor: pointer">
+          <th scope="row">{{ osoba.id }}</th>
+          <td>{{osoba.firstName}}</td>
+          <td>{{osoba.lastName}}</td>
+          <td [ngSwitch]="osoba.status">
+            <p *ngSwitchCase="'NONE'" class="badge bg-danger">Nezaočkovaní</p>
+            <p *ngSwitchCase="'PARTIAL'" class="badge bg-secondary">Čiastočne zaočkovaní</p>
+            <p *ngSwitchCase="'FULL'" class="badge bg-success">Plne zaočkovaní</p>
+            <p *ngSwitchCase="'BOOSTER'" class="badge bg-primary">Zaočkovaní - booster</p>
+            <p *ngSwitchDefault class="badge bg-dark">Neuvedené</p>
+            <i *ngIf="checkDuration(osoba.vaccineEnd)" class="bi bi-exclamation-circle-fill text-danger mx-1"></i>
+          </td>
+        </tr>
+        </tbody>
+        <tbody *ngIf="!hasRole('ADMIN')">
+        <tr *ngFor="let osoba of osobySlice">
           <th scope="row">{{ osoba.id }}</th>
           <td>{{osoba.firstName}}</td>
           <td>{{osoba.lastName}}</td>

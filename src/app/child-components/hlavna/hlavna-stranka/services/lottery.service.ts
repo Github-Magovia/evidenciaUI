@@ -8,7 +8,7 @@ import {Lottery} from "../../../../../models/lottery.model";
 })
 export class LotteryService {
 
-  private apiUrl = 'http://localhost:8080/api/lottery';
+  private apiUrl = 'http://localhost:8081/api/lottery';
 
   constructor(private http: HttpClient) { }
 

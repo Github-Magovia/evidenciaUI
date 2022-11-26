@@ -21,6 +21,7 @@ export class OsobyFormularComponent implements OnInit {
   @ViewChild('content', { static: true }) modal: ElementRef;
   showAlert: boolean;
   isEditing: boolean = false;
+  max: string;
 
   @Input()
   set osoba(data: Osoba) {
@@ -38,6 +39,9 @@ export class OsobyFormularComponent implements OnInit {
     this.createOsoba = new EventEmitter<Osoba>();
     this.editOsoba = new EventEmitter<Osoba>();
     this.deleteOsoba = new EventEmitter<number>();
+    const today = new Date();
+    this.max = today.getFullYear() + '-' + ((today.getMonth() < 9) ? '0' + (today.getMonth() + 1) : (today.getMonth()+1)) + '-' + ((today.getDate() < 10) ? '0' + today.getDate() : (today.getDate()));
+    console.log(this.max);0
     this.osobaForm = new FormGroup({
       id: new FormControl(null),
       firstName: new FormControl(null, [
@@ -56,6 +60,7 @@ export class OsobyFormularComponent implements OnInit {
       vaccineStart: new FormControl(null),
       vaccineEnd: new FormControl(null)
     });
+
   }
 
   private naplnFormular(o: Osoba): void {

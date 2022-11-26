@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, QueryList, Vi
 import {Osoba} from "../../../../../models/osoba.model";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {SortEvent, SortOsoby} from "./sort-osoby";
+import {SecurityRolesService} from "../../../../security-roles.service";
 
 const compare = (v1: String | number, v2: String | number) => v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
@@ -20,13 +21,15 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
   @Input() osoby: Osoba[] = [];
   osobySlice: Osoba[] = [];
   @ViewChildren(SortOsoby) headers: QueryList<SortOsoby>;
+  roles: string[] = [];
+
 
   @Output()
   editOsoba: EventEmitter<number> = new EventEmitter<number>();
 
   edit(id: number): void { this.editOsoba.emit(id); }
 
-  constructor() {
+  constructor(service: SecurityRolesService) {
     this.filtering = new FormGroup({
       id: new FormControl(null, [
         Validators.min(0),
@@ -44,6 +47,8 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
         Validators.required
       ])
     });
+    this.roles = service.getRoles();
+    console.log(this.roles);
   }
 
   // TODO ARROWS
@@ -119,6 +124,16 @@ export class OsobyZoznamComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
+  }
+
+
+  hasRole(role: string): boolean {
+    for (let r of this.roles) {
+      if (r.match(role)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   ngOnChanges(): void {
