@@ -37,7 +37,7 @@ import { TerminyZoznamComponent } from './child-components/terminy/child-compone
 import {SortTermin} from "./child-components/terminy/child-components/terminy-zoznam/sort-terminy";
 
 export const authCodeFlowConfig: AuthConfig = {
-  issuer: 'http://keycloak:8080/auth/realms/EvidenciaApplication',
+  issuer: 'http://localhost:8080/auth/realms/EvidenciaApplication',
   redirectUri: 'http://localhost:4200',
   clientId: 'fe-app',
   scope: 'openid profile email',
