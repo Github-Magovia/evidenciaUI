@@ -25,7 +25,7 @@
         <!-- Datum Narodenia input -->
         <div class="form-outline datepicker">
           <label for="datNar" class="form-label">Dátum narodenia: </label>
-          <input type="date" formControlName="dateOfBirth" class="form-control" id="datNar">
+          <input type="date" formControlName="dateOfBirth" min="1900-01-01" [max]="max" class="form-control" id="datNar">
         </div>
         <!-- Pohlavie input -->
         <div class="form-outline mb-4">

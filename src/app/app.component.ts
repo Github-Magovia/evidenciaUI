@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OAuthService} from "angular-oauth2-oidc";
 import {authCodeFlowConfig} from "./app.module";
+import {SecurityRolesService} from "./security-roles.service";
 
 @Component({
   selector: 'app-root',
@@ -12,11 +13,12 @@ export class AppComponent implements OnInit {
   roles: string[] = [];
 
 
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService, service: SecurityRolesService) {
     this.oauthService.configure(authCodeFlowConfig);
     this.oauthService.loadDiscoveryDocumentAndLogin().then(data => {
     });
     this.roles = this.parseJwt(this.oauthService.getAccessToken())['realm_access'].roles;
+    service.addRoles(this.roles);
   }
 
   ngOnInit(): void {

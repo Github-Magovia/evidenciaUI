@@ -8,7 +8,7 @@ import {Ockovanie} from "../../../../models/ockovanie.model";
 })
 export class OckovanieService {
 
-  private apiUrl = 'http://localhost:8080/api/vaccinations';
+  private apiUrl = 'http://localhost:8081/api/vaccinations';
 
   constructor(private http: HttpClient) { }
 

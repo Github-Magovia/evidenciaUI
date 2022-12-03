@@ -7,7 +7,7 @@ import {Termin} from "../../../../models/termin.model";
   providedIn: 'root'
 })
 export class TerminyService {
-  private apiUrl = 'http://localhost:8080/api/terms';
+  private apiUrl = 'http://localhost:8081/api/terms';
 
   constructor(private http: HttpClient) { }
 
